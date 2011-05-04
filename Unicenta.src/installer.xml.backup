@@ -1,0 +1,191 @@
+<project>
+    <shortName>unicentaopos</shortName>
+    <fullName>uniCenta oPOS</fullName>
+    <version>2.53</version>
+    <readmeFile>D:/Development/OpenBravo_POS_2.3/Source/README</readmeFile>
+    <licenseFile>D:\Development\OpenBravo_POS_2.3\Source\licensing\uniCenta oPOS Notice.txt</licenseFile>
+    <leftImage>D:/Development/OpenBravo_POS_2.3/Source/src-beans/com/openbravo/images/v_logo.png</leftImage>
+    <logoImage>D:/Development/OpenBravo_POS_2.3/Source/src-beans/com/openbravo/images/unicentaopos.png</logoImage>
+    <splashImage>D:/Clients/Logos/unicenta_splash.png</splashImage>
+    <allowLanguageSelection>1</allowLanguageSelection>
+    <description>uniCenta oPOS - Touch Friendly Point Of Sale</description>
+    <enableRollback>1</enableRollback>
+    <enableTimestamp>1</enableTimestamp>
+    <licenseFileEncoding>utf-8</licenseFileEncoding>
+    <nativePackageName>uniCenta oPOS</nativePackageName>
+    <outputDirectory>D:\Development\uniCentaopos\build</outputDirectory>
+    <productComments>uniCenta oPOS Touch Friendly Point of Sale</productComments>
+    <productContact>info@unicenta.net</productContact>
+    <productUrlHelpLink>http://www.unicentaopos.co.uk</productUrlHelpLink>
+    <productUrlInfoAbout>http://www.unicentaopos.co.uk</productUrlInfoAbout>
+    <readmeFileEncoding>utf-8</readmeFileEncoding>
+    <release>3</release>
+    <requireInstallationByRootUser>1</requireInstallationByRootUser>
+    <splashScreenDelay>4</splashScreenDelay>
+    <summary>POS</summary>
+    <vendor>uniCenta</vendor>
+    <windowsResourceFileDescription>uniCenta oPOS executable</windowsResourceFileDescription>
+    <windowsResourceFileVersion>1.0.1.0</windowsResourceFileVersion>
+    <windowsResourceInternalName>uniCenta oPOS</windowsResourceInternalName>
+    <componentList>
+        <component>
+            <name>default</name>
+            <description>Default Component</description>
+            <canBeEdited>1</canBeEdited>
+            <selected>1</selected>
+            <show>1</show>
+            <desktopShortcutList>
+                <shortcut>
+                    <comment>uniCenta oPOS - Touch Friendly Point Of Sale</comment>
+                    <exec>unicentaopos</exec>
+                    <icon>unicentaopos.png</icon>
+                    <name>uniCenta oPOS</name>
+                    <path>${installdir}</path>
+                    <platforms>windows</platforms>
+                    <runInTerminal>0</runInTerminal>
+                    <windowsExec>${installdir}/start.bat</windowsExec>
+                    <windowsExecArgs>${installdir}/start.bat</windowsExecArgs>
+                    <windowsIcon>${installdir}/unicentaopos.ico</windowsIcon>
+                    <windowsPath>${installdir}</windowsPath>
+                </shortcut>
+            </desktopShortcutList>
+            <folderList>
+                <folder>
+                    <description>Program Files</description>
+                    <destination>${installdir}</destination>
+                    <name>programfiles</name>
+                    <platforms>all</platforms>
+                    <shortcutList>
+                        <shortcut>
+                            <comment>Uninstall</comment>
+                            <exec>${installdir}/${uninstallerName}</exec>
+                            <icon></icon>
+                            <name>Uninstall ${product_fullname}</name>
+                            <path>${installdir}</path>
+                            <platforms>all</platforms>
+                            <runInTerminal>0</runInTerminal>
+                            <windowsExec>${installdir}/${uninstallerName}.exe</windowsExec>
+                            <windowsExecArgs></windowsExecArgs>
+                            <windowsIcon></windowsIcon>
+                            <windowsPath>${installdir}</windowsPath>
+                        </shortcut>
+                    </shortcutList>
+                </folder>
+                <folder>
+                    <description>Program Files</description>
+                    <destination>${installdir}</destination>
+                    <name>programfileswindows</name>
+                    <platforms>windows</platforms>
+                    <distributionFileList>
+                        <distributionFile>
+                            <origin>D:/Development/OpenBravo_POS_2.3/Source/start.bat</origin>
+                        </distributionFile>
+                        <distributionDirectory>
+                            <origin>D:/Development/OpenBravo_POS_2.3/Source/reports</origin>
+                        </distributionDirectory>
+                        <distributionDirectory>
+                            <origin>D:/Development/OpenBravo_POS_2.3/Source/locales</origin>
+                        </distributionDirectory>
+                        <distributionDirectory>
+                            <origin>D:/Development/OpenBravo_POS_2.3/Source/licensing</origin>
+                        </distributionDirectory>
+                        <distributionDirectory>
+                            <origin>D:/Development/OpenBravo_POS_2.3/Source/lib</origin>
+                        </distributionDirectory>
+                        <distributionFile>
+                            <origin>D:/Development/OpenBravo_POS_2.3/Source/configure.bat</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>D:/Development/OpenBravo_POS_2.3/Source/unicentaopos _128.png</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>D:/Development/uniCentaopos/dist/uniCentaoPOS.jar</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>D:/Development/OpenBravo_POS_2.3/Source/licensing/uniCenta oPOS Notice.txt</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>D:/Development/OpenBravo_POS_2.3/Source/report_logo.png</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>D:/Development/OpenBravo_POS_2.3/Source/unicenta.png</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>D:/Development/OpenBravo_POS_2.3/Source/unicentaopos.png</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>D:/Development/OpenBravo_POS_2.3/Source/Window.Logo.png</origin>
+                        </distributionFile>
+                        <distributionDirectory>
+                            <origin>D:/Development/OpenBravo_POS_2.3/Source/Bonus</origin>
+                        </distributionDirectory>
+                        <distributionFile>
+                            <origin>D:/Development/OpenBravo_POS_2.3/Source/README</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>D:/Development/OpenBravo_POS_2.3/Source/unicentaopos.ico</origin>
+                        </distributionFile>
+                    </distributionFileList>
+                </folder>
+            </folderList>
+            <startMenuShortcutList>
+                <startMenuShortcut>
+                    <comment>Uninstall ${product_fullname}</comment>
+                    <name>Uninstall ${product_fullname}</name>
+                    <runInTerminal>0</runInTerminal>
+                    <windowsExec>${installdir}/${uninstallerName}.exe</windowsExec>
+                    <windowsExecArgs></windowsExecArgs>
+                    <windowsIcon></windowsIcon>
+                    <windowsPath>${installdir}/</windowsPath>
+                </startMenuShortcut>
+                <startMenuShortcut>
+                    <comment>Touch Friendly Point Of Sale</comment>
+                    <name>uniCenta oPOS</name>
+                    <runInTerminal>0</runInTerminal>
+                    <windowsExec>${installdir}/start.bat</windowsExec>
+                    <windowsExecArgs>${installdir}/start.bat</windowsExecArgs>
+                    <windowsIcon>${installdir}/unicentaopos.ico</windowsIcon>
+                    <windowsPath>${installdir}</windowsPath>
+                </startMenuShortcut>
+                <startMenuShortcut>
+                    <comment>uniCenta oPOS Configuration</comment>
+                    <name>Configure</name>
+                    <runInTerminal>0</runInTerminal>
+                    <windowsExec>${installdir}/configure.bat</windowsExec>
+                    <windowsExecArgs>${installdir}/configure.bat</windowsExecArgs>
+                    <windowsIcon>${installdir}/unicentaopos.ico</windowsIcon>
+                    <windowsPath>${installdir}</windowsPath>
+                </startMenuShortcut>
+            </startMenuShortcutList>
+        </component>
+    </componentList>
+    <parameterList>
+        <directoryParameter>
+            <name>installdir</name>
+            <description>Installer.Parameter.installdir.description</description>
+            <explanation>Installer.Parameter.installdir.explanation</explanation>
+            <value>${platform_install_prefix}/${product_shortname}-${product_version}</value>
+            <default>${platform_install_prefix}/${product_shortname}-${product_version}</default>
+            <allowEmptyValue>0</allowEmptyValue>
+            <ask>yes</ask>
+            <cliOptionName>prefix</cliOptionName>
+            <mustBeWritable>yes</mustBeWritable>
+            <mustExist>0</mustExist>
+            <width>30</width>
+        </directoryParameter>
+    </parameterList>
+    <platformOptionsList>
+        <platformOptions>
+            <description>uniCenta oPOS - Touch Friendly Point Of Sale</description>
+            <platform>debian</platform>
+            <release>1</release>
+            <summary>POS</summary>
+            <vendor>uniCenta</vendor>
+        </platformOptions>
+        <platformOptions>
+            <shortName>unicentaopos</shortName>
+            <platform>windows</platform>
+        </platformOptions>
+    </platformOptionsList>
+</project>
+

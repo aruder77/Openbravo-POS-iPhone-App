@@ -1,0 +1,12 @@
+----------------------------------------------------------------
+2010-10-16 11:55:08.931 GMT:
+ Booting Derby version The Apache Software Foundation - Apache Derby - 10.5.3.0 - (802917): instance a816c00e-012b-b4e4-afba-0000011d99b8
+on database directory D:\Openbravo_data\database in READ ONLY mode 
+
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+2010-10-16 12:30:10.647 GMT:
+ Booting Derby version The Apache Software Foundation - Apache Derby - 10.5.3.0 - (802917): instance 594b8034-012b-b4e4-afba-0000011d99b8
+on database directory C:\Users\Jack\unicentaopos-database  
+
+Database Class Loader started - derby.database.classpath=''
