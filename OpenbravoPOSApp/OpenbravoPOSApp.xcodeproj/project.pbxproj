@@ -1,0 +1,457 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7722B6601341382E001DA854 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7722B65F1341382E001DA854 /* UIKit.framework */; };
+		7722B6621341382E001DA854 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7722B6611341382E001DA854 /* Foundation.framework */; };
+		7722B6641341382E001DA854 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7722B6631341382E001DA854 /* CoreGraphics.framework */; };
+		7722B66A1341382E001DA854 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7722B6681341382E001DA854 /* InfoPlist.strings */; };
+		7722B66D1341382E001DA854 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7722B66C1341382E001DA854 /* main.m */; };
+		7722B6701341382E001DA854 /* OpenbravoPOSAppAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7722B66F1341382E001DA854 /* OpenbravoPOSAppAppDelegate.m */; };
+		7722B6731341382F001DA854 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7722B6711341382F001DA854 /* MainWindow.xib */; };
+		7722B6A41347CC01001DA854 /* TablesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7722B6A21347CC01001DA854 /* TablesTableViewController.m */; };
+		7722B6A51347CC01001DA854 /* TablesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7722B6A31347CC01001DA854 /* TablesViewController.xib */; };
+		7722B6A91347CC79001DA854 /* TableItemsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7722B6A71347CC79001DA854 /* TableItemsTableViewController.m */; };
+		7722B6AA1347CC79001DA854 /* TableItemsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7722B6A81347CC79001DA854 /* TableItemsViewController.xib */; };
+		7722B6AE1347CCCC001DA854 /* CheckoutTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7722B6AC1347CCCC001DA854 /* CheckoutTableViewController.m */; };
+		7722B6AF1347CCCC001DA854 /* CheckoutTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7722B6AD1347CCCC001DA854 /* CheckoutTableView.xib */; };
+		7722B6B31347CD0A001DA854 /* ItemSelectionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7722B6B11347CD0A001DA854 /* ItemSelectionTableViewController.m */; };
+		7722B6B41347CD0A001DA854 /* ItemSelectionTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7722B6B21347CD0A001DA854 /* ItemSelectionTableViewController.xib */; };
+		7722B6B81347CDB3001DA854 /* ItemDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7722B6B61347CDB2001DA854 /* ItemDetailsViewController.m */; };
+		7722B6B91347CDB3001DA854 /* ItemDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7722B6B71347CDB3001DA854 /* ItemDetailsViewController.xib */; };
+		7771CE7A134A787200A36621 /* SectionFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7771CE79134A787200A36621 /* SectionFooterView.xib */; };
+		7771CE7D134B9E9600A36621 /* SwitchTableTableHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7771CE7C134B9E9600A36621 /* SwitchTableTableHeader.xib */; };
+		7771CE92134CA22C00A36621 /* NSObject+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 7771CE81134CA22C00A36621 /* NSObject+JSON.m */; };
+		7771CE93134CA22C00A36621 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 7771CE83134CA22C00A36621 /* SBJsonParser.m */; };
+		7771CE94134CA22C00A36621 /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 7771CE85134CA22C00A36621 /* SBJsonStreamParser.m */; };
+		7771CE95134CA22C00A36621 /* SBJsonStreamParserAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7771CE87134CA22C00A36621 /* SBJsonStreamParserAdapter.m */; };
+		7771CE96134CA22C00A36621 /* SBJsonStreamParserState.m in Sources */ = {isa = PBXBuildFile; fileRef = 7771CE89134CA22C00A36621 /* SBJsonStreamParserState.m */; };
+		7771CE97134CA22C00A36621 /* SBJsonStreamWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7771CE8B134CA22C00A36621 /* SBJsonStreamWriter.m */; };
+		7771CE98134CA22C00A36621 /* SBJsonStreamWriterState.m in Sources */ = {isa = PBXBuildFile; fileRef = 7771CE8D134CA22C00A36621 /* SBJsonStreamWriterState.m */; };
+		7771CE99134CA22C00A36621 /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = 7771CE8F134CA22C00A36621 /* SBJsonTokeniser.m */; };
+		7771CE9A134CA22C00A36621 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7771CE91134CA22C00A36621 /* SBJsonWriter.m */; };
+		7771CE9E134CB65500A36621 /* Table.m in Sources */ = {isa = PBXBuildFile; fileRef = 7771CE9D134CB65500A36621 /* Table.m */; };
+		778268981349221200BC6625 /* TableItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 778268971349221200BC6625 /* TableItemTableViewCell.xib */; };
+		7791556E1364664E008E3474 /* edit_group.png in Resources */ = {isa = PBXBuildFile; fileRef = 7791556D1364664E008E3474 /* edit_group.png */; };
+		7791557113646B1D008E3474 /* empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 7791557013646B1D008E3474 /* empty.png */; };
+		77971BB31367765300F478B5 /* ProductSelectionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77971BB21367765300F478B5 /* ProductSelectionTableViewController.m */; };
+		7799996B135103B200AFCF4F /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 7799996A135103B200AFCF4F /* Category.m */; };
+		7799996F13523CDE00AFCF4F /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = 7799996E13523CDE00AFCF4F /* Product.m */; };
+		77999972135635D700AFCF4F /* Ticket.m in Sources */ = {isa = PBXBuildFile; fileRef = 77999971135635D700AFCF4F /* Ticket.m */; };
+		77999975135643AE00AFCF4F /* TicketLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 77999974135643AE00AFCF4F /* TicketLine.m */; };
+		77E3ECD3136C741400FF7A5E /* ItemSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E3ECD2136C741400FF7A5E /* ItemSelection.m */; };
+		77F2E72513638A5200102469 /* AngerhofLogo_iOS.png in Resources */ = {isa = PBXBuildFile; fileRef = 77F2E72413638A5100102469 /* AngerhofLogo_iOS.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		7722B65B1341382E001DA854 /* OpenbravoPOSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenbravoPOSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7722B65F1341382E001DA854 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		7722B6611341382E001DA854 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		7722B6631341382E001DA854 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		7722B6671341382E001DA854 /* OpenbravoPOSApp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OpenbravoPOSApp-Info.plist"; sourceTree = "<group>"; };
+		7722B6691341382E001DA854 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		7722B66B1341382E001DA854 /* OpenbravoPOSApp-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OpenbravoPOSApp-Prefix.pch"; sourceTree = "<group>"; };
+		7722B66C1341382E001DA854 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		7722B66E1341382E001DA854 /* OpenbravoPOSAppAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenbravoPOSAppAppDelegate.h; sourceTree = "<group>"; };
+		7722B66F1341382E001DA854 /* OpenbravoPOSAppAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpenbravoPOSAppAppDelegate.m; sourceTree = "<group>"; };
+		7722B6721341382F001DA854 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		7722B6A11347CC01001DA854 /* TablesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TablesTableViewController.h; sourceTree = "<group>"; };
+		7722B6A21347CC01001DA854 /* TablesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TablesTableViewController.m; sourceTree = "<group>"; };
+		7722B6A31347CC01001DA854 /* TablesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TablesViewController.xib; sourceTree = "<group>"; };
+		7722B6A61347CC79001DA854 /* TableItemsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableItemsTableViewController.h; sourceTree = "<group>"; };
+		7722B6A71347CC79001DA854 /* TableItemsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableItemsTableViewController.m; sourceTree = "<group>"; };
+		7722B6A81347CC79001DA854 /* TableItemsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableItemsViewController.xib; sourceTree = "<group>"; };
+		7722B6AB1347CCCC001DA854 /* CheckoutTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckoutTableViewController.h; sourceTree = "<group>"; };
+		7722B6AC1347CCCC001DA854 /* CheckoutTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckoutTableViewController.m; sourceTree = "<group>"; };
+		7722B6AD1347CCCC001DA854 /* CheckoutTableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckoutTableView.xib; sourceTree = "<group>"; };
+		7722B6B01347CD0A001DA854 /* ItemSelectionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemSelectionTableViewController.h; sourceTree = "<group>"; };
+		7722B6B11347CD0A001DA854 /* ItemSelectionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemSelectionTableViewController.m; sourceTree = "<group>"; };
+		7722B6B21347CD0A001DA854 /* ItemSelectionTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemSelectionTableViewController.xib; sourceTree = "<group>"; };
+		7722B6B51347CDB2001DA854 /* ItemDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemDetailsViewController.h; sourceTree = "<group>"; };
+		7722B6B61347CDB2001DA854 /* ItemDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemDetailsViewController.m; sourceTree = "<group>"; };
+		7722B6B71347CDB3001DA854 /* ItemDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemDetailsViewController.xib; sourceTree = "<group>"; };
+		7771CE79134A787200A36621 /* SectionFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SectionFooterView.xib; sourceTree = "<group>"; };
+		7771CE7C134B9E9600A36621 /* SwitchTableTableHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SwitchTableTableHeader.xib; sourceTree = "<group>"; };
+		7771CE7F134CA22C00A36621 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
+		7771CE80134CA22C00A36621 /* NSObject+JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+JSON.h"; sourceTree = "<group>"; };
+		7771CE81134CA22C00A36621 /* NSObject+JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+JSON.m"; sourceTree = "<group>"; };
+		7771CE82134CA22C00A36621 /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
+		7771CE83134CA22C00A36621 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
+		7771CE84134CA22C00A36621 /* SBJsonStreamParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamParser.h; sourceTree = "<group>"; };
+		7771CE85134CA22C00A36621 /* SBJsonStreamParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamParser.m; sourceTree = "<group>"; };
+		7771CE86134CA22C00A36621 /* SBJsonStreamParserAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamParserAdapter.h; sourceTree = "<group>"; };
+		7771CE87134CA22C00A36621 /* SBJsonStreamParserAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamParserAdapter.m; sourceTree = "<group>"; };
+		7771CE88134CA22C00A36621 /* SBJsonStreamParserState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamParserState.h; sourceTree = "<group>"; };
+		7771CE89134CA22C00A36621 /* SBJsonStreamParserState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamParserState.m; sourceTree = "<group>"; };
+		7771CE8A134CA22C00A36621 /* SBJsonStreamWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamWriter.h; sourceTree = "<group>"; };
+		7771CE8B134CA22C00A36621 /* SBJsonStreamWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamWriter.m; sourceTree = "<group>"; };
+		7771CE8C134CA22C00A36621 /* SBJsonStreamWriterState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamWriterState.h; sourceTree = "<group>"; };
+		7771CE8D134CA22C00A36621 /* SBJsonStreamWriterState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamWriterState.m; sourceTree = "<group>"; };
+		7771CE8E134CA22C00A36621 /* SBJsonTokeniser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonTokeniser.h; sourceTree = "<group>"; };
+		7771CE8F134CA22C00A36621 /* SBJsonTokeniser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonTokeniser.m; sourceTree = "<group>"; };
+		7771CE90134CA22C00A36621 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
+		7771CE91134CA22C00A36621 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		7771CE9C134CB65500A36621 /* Table.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Table.h; sourceTree = "<group>"; };
+		7771CE9D134CB65500A36621 /* Table.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Table.m; sourceTree = "<group>"; };
+		778268971349221200BC6625 /* TableItemTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableItemTableViewCell.xib; sourceTree = "<group>"; };
+		7791556D1364664E008E3474 /* edit_group.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = edit_group.png; path = OpenbravoPOSApp/edit_group.png; sourceTree = "<group>"; };
+		7791557013646B1D008E3474 /* empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = empty.png; path = OpenbravoPOSApp/empty.png; sourceTree = "<group>"; };
+		77971BB01367764300F478B5 /* ProductSelectionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductSelectionTableViewController.h; sourceTree = "<group>"; };
+		77971BB21367765300F478B5 /* ProductSelectionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductSelectionTableViewController.m; sourceTree = "<group>"; };
+		77999969135103B200AFCF4F /* Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Category.h; sourceTree = "<group>"; };
+		7799996A135103B200AFCF4F /* Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Category.m; sourceTree = "<group>"; };
+		7799996D13523CDE00AFCF4F /* Product.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Product.h; sourceTree = "<group>"; };
+		7799996E13523CDE00AFCF4F /* Product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Product.m; sourceTree = "<group>"; };
+		77999970135635D700AFCF4F /* Ticket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ticket.h; sourceTree = "<group>"; };
+		77999971135635D700AFCF4F /* Ticket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ticket.m; sourceTree = "<group>"; };
+		77999973135643AE00AFCF4F /* TicketLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketLine.h; sourceTree = "<group>"; };
+		77999974135643AE00AFCF4F /* TicketLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketLine.m; sourceTree = "<group>"; };
+		77E3ECD1136C741400FF7A5E /* ItemSelection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemSelection.h; sourceTree = "<group>"; };
+		77E3ECD2136C741400FF7A5E /* ItemSelection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemSelection.m; sourceTree = "<group>"; };
+		77F2E72413638A5100102469 /* AngerhofLogo_iOS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AngerhofLogo_iOS.png; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7722B6581341382E001DA854 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7722B6601341382E001DA854 /* UIKit.framework in Frameworks */,
+				7722B6621341382E001DA854 /* Foundation.framework in Frameworks */,
+				7722B6641341382E001DA854 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7722B6501341382E001DA854 = {
+			isa = PBXGroup;
+			children = (
+				7791557013646B1D008E3474 /* empty.png */,
+				77F2E72413638A5100102469 /* AngerhofLogo_iOS.png */,
+				7791556D1364664E008E3474 /* edit_group.png */,
+				7722B6651341382E001DA854 /* OpenbravoPOSApp */,
+				7722B65E1341382E001DA854 /* Frameworks */,
+				7722B65C1341382E001DA854 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7722B65C1341382E001DA854 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7722B65B1341382E001DA854 /* OpenbravoPOSApp.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7722B65E1341382E001DA854 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7722B65F1341382E001DA854 /* UIKit.framework */,
+				7722B6611341382E001DA854 /* Foundation.framework */,
+				7722B6631341382E001DA854 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7722B6651341382E001DA854 /* OpenbravoPOSApp */ = {
+			isa = PBXGroup;
+			children = (
+				7771CE9B134CB63A00A36621 /* model */,
+				7771CE7E134CA20100A36621 /* json-framework */,
+				7722B66E1341382E001DA854 /* OpenbravoPOSAppAppDelegate.h */,
+				7722B66F1341382E001DA854 /* OpenbravoPOSAppAppDelegate.m */,
+				7722B6711341382F001DA854 /* MainWindow.xib */,
+				7722B6661341382E001DA854 /* Supporting Files */,
+				7722B6A11347CC01001DA854 /* TablesTableViewController.h */,
+				7722B6A21347CC01001DA854 /* TablesTableViewController.m */,
+				7722B6A31347CC01001DA854 /* TablesViewController.xib */,
+				7722B6A61347CC79001DA854 /* TableItemsTableViewController.h */,
+				7722B6A71347CC79001DA854 /* TableItemsTableViewController.m */,
+				7722B6A81347CC79001DA854 /* TableItemsViewController.xib */,
+				7722B6AB1347CCCC001DA854 /* CheckoutTableViewController.h */,
+				7722B6AC1347CCCC001DA854 /* CheckoutTableViewController.m */,
+				7722B6AD1347CCCC001DA854 /* CheckoutTableView.xib */,
+				7722B6B01347CD0A001DA854 /* ItemSelectionTableViewController.h */,
+				7722B6B11347CD0A001DA854 /* ItemSelectionTableViewController.m */,
+				77971BB01367764300F478B5 /* ProductSelectionTableViewController.h */,
+				77971BB21367765300F478B5 /* ProductSelectionTableViewController.m */,
+				7722B6B21347CD0A001DA854 /* ItemSelectionTableViewController.xib */,
+				7722B6B51347CDB2001DA854 /* ItemDetailsViewController.h */,
+				7722B6B61347CDB2001DA854 /* ItemDetailsViewController.m */,
+				7722B6B71347CDB3001DA854 /* ItemDetailsViewController.xib */,
+				778268971349221200BC6625 /* TableItemTableViewCell.xib */,
+				7771CE79134A787200A36621 /* SectionFooterView.xib */,
+				7771CE7C134B9E9600A36621 /* SwitchTableTableHeader.xib */,
+			);
+			path = OpenbravoPOSApp;
+			sourceTree = "<group>";
+		};
+		7722B6661341382E001DA854 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7722B6671341382E001DA854 /* OpenbravoPOSApp-Info.plist */,
+				7722B6681341382E001DA854 /* InfoPlist.strings */,
+				7722B66B1341382E001DA854 /* OpenbravoPOSApp-Prefix.pch */,
+				7722B66C1341382E001DA854 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7771CE7E134CA20100A36621 /* json-framework */ = {
+			isa = PBXGroup;
+			children = (
+				7771CE7F134CA22C00A36621 /* JSON.h */,
+				7771CE80134CA22C00A36621 /* NSObject+JSON.h */,
+				7771CE81134CA22C00A36621 /* NSObject+JSON.m */,
+				7771CE82134CA22C00A36621 /* SBJsonParser.h */,
+				7771CE83134CA22C00A36621 /* SBJsonParser.m */,
+				7771CE84134CA22C00A36621 /* SBJsonStreamParser.h */,
+				7771CE85134CA22C00A36621 /* SBJsonStreamParser.m */,
+				7771CE86134CA22C00A36621 /* SBJsonStreamParserAdapter.h */,
+				7771CE87134CA22C00A36621 /* SBJsonStreamParserAdapter.m */,
+				7771CE88134CA22C00A36621 /* SBJsonStreamParserState.h */,
+				7771CE89134CA22C00A36621 /* SBJsonStreamParserState.m */,
+				7771CE8A134CA22C00A36621 /* SBJsonStreamWriter.h */,
+				7771CE8B134CA22C00A36621 /* SBJsonStreamWriter.m */,
+				7771CE8C134CA22C00A36621 /* SBJsonStreamWriterState.h */,
+				7771CE8D134CA22C00A36621 /* SBJsonStreamWriterState.m */,
+				7771CE8E134CA22C00A36621 /* SBJsonTokeniser.h */,
+				7771CE8F134CA22C00A36621 /* SBJsonTokeniser.m */,
+				7771CE90134CA22C00A36621 /* SBJsonWriter.h */,
+				7771CE91134CA22C00A36621 /* SBJsonWriter.m */,
+			);
+			name = "json-framework";
+			sourceTree = "<group>";
+		};
+		7771CE9B134CB63A00A36621 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				7771CE9C134CB65500A36621 /* Table.h */,
+				7771CE9D134CB65500A36621 /* Table.m */,
+				77999969135103B200AFCF4F /* Category.h */,
+				7799996A135103B200AFCF4F /* Category.m */,
+				7799996D13523CDE00AFCF4F /* Product.h */,
+				7799996E13523CDE00AFCF4F /* Product.m */,
+				77999970135635D700AFCF4F /* Ticket.h */,
+				77999971135635D700AFCF4F /* Ticket.m */,
+				77999973135643AE00AFCF4F /* TicketLine.h */,
+				77999974135643AE00AFCF4F /* TicketLine.m */,
+				77E3ECD1136C741400FF7A5E /* ItemSelection.h */,
+				77E3ECD2136C741400FF7A5E /* ItemSelection.m */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7722B65A1341382E001DA854 /* OpenbravoPOSApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7722B67C1341382F001DA854 /* Build configuration list for PBXNativeTarget "OpenbravoPOSApp" */;
+			buildPhases = (
+				7722B6571341382E001DA854 /* Sources */,
+				7722B6581341382E001DA854 /* Frameworks */,
+				7722B6591341382E001DA854 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OpenbravoPOSApp;
+			productName = OpenbravoPOSApp;
+			productReference = 7722B65B1341382E001DA854 /* OpenbravoPOSApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7722B6521341382E001DA854 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "msg systems ag";
+			};
+			buildConfigurationList = 7722B6551341382E001DA854 /* Build configuration list for PBXProject "OpenbravoPOSApp" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7722B6501341382E001DA854;
+			productRefGroup = 7722B65C1341382E001DA854 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7722B65A1341382E001DA854 /* OpenbravoPOSApp */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7722B6591341382E001DA854 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7722B66A1341382E001DA854 /* InfoPlist.strings in Resources */,
+				7722B6731341382F001DA854 /* MainWindow.xib in Resources */,
+				7722B6A51347CC01001DA854 /* TablesViewController.xib in Resources */,
+				7722B6AA1347CC79001DA854 /* TableItemsViewController.xib in Resources */,
+				7722B6AF1347CCCC001DA854 /* CheckoutTableView.xib in Resources */,
+				7722B6B41347CD0A001DA854 /* ItemSelectionTableViewController.xib in Resources */,
+				7722B6B91347CDB3001DA854 /* ItemDetailsViewController.xib in Resources */,
+				778268981349221200BC6625 /* TableItemTableViewCell.xib in Resources */,
+				7771CE7A134A787200A36621 /* SectionFooterView.xib in Resources */,
+				7771CE7D134B9E9600A36621 /* SwitchTableTableHeader.xib in Resources */,
+				77F2E72513638A5200102469 /* AngerhofLogo_iOS.png in Resources */,
+				7791556E1364664E008E3474 /* edit_group.png in Resources */,
+				7791557113646B1D008E3474 /* empty.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7722B6571341382E001DA854 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7722B66D1341382E001DA854 /* main.m in Sources */,
+				7722B6701341382E001DA854 /* OpenbravoPOSAppAppDelegate.m in Sources */,
+				7722B6A41347CC01001DA854 /* TablesTableViewController.m in Sources */,
+				7722B6A91347CC79001DA854 /* TableItemsTableViewController.m in Sources */,
+				7722B6AE1347CCCC001DA854 /* CheckoutTableViewController.m in Sources */,
+				7722B6B31347CD0A001DA854 /* ItemSelectionTableViewController.m in Sources */,
+				7722B6B81347CDB3001DA854 /* ItemDetailsViewController.m in Sources */,
+				7771CE92134CA22C00A36621 /* NSObject+JSON.m in Sources */,
+				7771CE93134CA22C00A36621 /* SBJsonParser.m in Sources */,
+				7771CE94134CA22C00A36621 /* SBJsonStreamParser.m in Sources */,
+				7771CE95134CA22C00A36621 /* SBJsonStreamParserAdapter.m in Sources */,
+				7771CE96134CA22C00A36621 /* SBJsonStreamParserState.m in Sources */,
+				7771CE97134CA22C00A36621 /* SBJsonStreamWriter.m in Sources */,
+				7771CE98134CA22C00A36621 /* SBJsonStreamWriterState.m in Sources */,
+				7771CE99134CA22C00A36621 /* SBJsonTokeniser.m in Sources */,
+				7771CE9A134CA22C00A36621 /* SBJsonWriter.m in Sources */,
+				7771CE9E134CB65500A36621 /* Table.m in Sources */,
+				7799996B135103B200AFCF4F /* Category.m in Sources */,
+				7799996F13523CDE00AFCF4F /* Product.m in Sources */,
+				77999972135635D700AFCF4F /* Ticket.m in Sources */,
+				77999975135643AE00AFCF4F /* TicketLine.m in Sources */,
+				77971BB31367765300F478B5 /* ProductSelectionTableViewController.m in Sources */,
+				77E3ECD3136C741400FF7A5E /* ItemSelection.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		7722B6681341382E001DA854 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7722B6691341382E001DA854 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		7722B6711341382F001DA854 /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7722B6721341382F001DA854 /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7722B67A1341382F001DA854 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		7722B67B1341382F001DA854 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		7722B67D1341382F001DA854 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OpenbravoPOSApp/OpenbravoPOSApp-Prefix.pch";
+				INFOPLIST_FILE = "OpenbravoPOSApp/OpenbravoPOSApp-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		7722B67E1341382F001DA854 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OpenbravoPOSApp/OpenbravoPOSApp-Prefix.pch";
+				INFOPLIST_FILE = "OpenbravoPOSApp/OpenbravoPOSApp-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7722B6551341382E001DA854 /* Build configuration list for PBXProject "OpenbravoPOSApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7722B67A1341382F001DA854 /* Debug */,
+				7722B67B1341382F001DA854 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7722B67C1341382F001DA854 /* Build configuration list for PBXNativeTarget "OpenbravoPOSApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7722B67D1341382F001DA854 /* Debug */,
+				7722B67E1341382F001DA854 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7722B6521341382E001DA854 /* Project object */;
+}
