@@ -37,7 +37,7 @@
 {
     self = [super initWithNibName:@"TableItemsViewController" bundle:nil];
     if (self) {
-        self.navigationItem.rightBarButtonItem = self.editButtonItem;
+//        self.navigationItem.rightBarButtonItem = self.editButtonItem;
         
         UIBarButtonItem *addButtonItem = [[UIBarButtonItem alloc]
                                                     initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
@@ -54,6 +54,10 @@
         self.toolbarItems = [NSArray arrayWithObjects:checkoutButtonItem, flexibleSpaceButtonItem, sendItemsButtonItem, flexibleSpaceButtonItem, addButtonItem, nil];
         
         addedItems = [[NSMutableArray alloc] init];
+        
+        [self.tableView beginUpdates];
+        [self.tableView setEditing:YES];
+        [self.tableView endUpdates];
         
         [addButtonItem release];
         [flexibleSpaceButtonItem release];
