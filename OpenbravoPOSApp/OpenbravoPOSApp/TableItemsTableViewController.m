@@ -269,15 +269,35 @@
     NSString *url = [NSString stringWithFormat:@"%@/tickets/ticket?place=%@", baseUrl, table.id];
 	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
     NSURLResponse *response;
-    NSError *error;
+    NSError *error = nil;
 	NSData *data = [NSURLConnection sendSynchronousRequest:request
                                          returningResponse:&response error:&error];
-    NSString *responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSLog(@"Response: %@", responseString);
-    
-	NSDictionary *results = [responseString JSONValue];
-    [responseString release];
-    [self readTicket:results];
+    if (error != nil && [error code]) {
+        RIButtonItem *cancelButton = [[RIButtonItem alloc] init];
+        cancelButton.label = @"Abbrechen";
+        cancelButton.action = ^
+        {
+            // do nothing
+        };
+        
+        RIButtonItem *repeatButton = [[RIButtonItem alloc] init];
+        repeatButton.label = @"Wiederholen";
+        repeatButton.action = ^
+        {
+            [self updateTicket];
+        };
+        
+        UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Error!" message:@"Das Ticket konnte nicht aktualisiert werden!" cancelButtonItem:cancelButton otherButtonItems:repeatButton, nil] autorelease];
+        
+        [alert show];
+    } else {
+        NSString *responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSLog(@"Response: %@", responseString);
+        
+        NSDictionary *results = [responseString JSONValue];
+        [responseString release];
+        [self readTicket:results];
+    }
 }
 
 
@@ -434,11 +454,31 @@
     [dataLengthString release];
     
     NSURLResponse *response;
-    NSError *error;
+    NSError *error = nil;
 	[NSURLConnection sendSynchronousRequest:request
                           returningResponse:&response error:&error];
     
-    [self updateTicket];
+    if (error != nil && [error code]) {
+        RIButtonItem *cancelButton = [[RIButtonItem alloc] init];
+        cancelButton.label = @"Abbrechen";
+        cancelButton.action = ^
+        {
+            // do nothing
+        };
+        
+        RIButtonItem *repeatButton = [[RIButtonItem alloc] init];
+        repeatButton.label = @"Wiederholen";
+        repeatButton.action = ^
+        {
+            [self deleteRowAtIndexPath:indexPath];
+        };
+        
+        UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Error!" message:@"Die Produkte konnten nicht gelöscht werden!" cancelButtonItem:cancelButton otherButtonItems:repeatButton, nil] autorelease];
+        
+        [alert show];
+    } else {
+        [self updateTicket];
+    }
 }
 
 
