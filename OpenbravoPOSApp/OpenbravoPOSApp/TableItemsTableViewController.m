@@ -15,6 +15,7 @@
 #import "Ticket.h"
 #import "TicketLine.h"
 #import "ItemSelection.h"
+#import "UIAlertView+Blocks.h"
 
 @implementation TableItemsTableViewController
 
@@ -233,17 +234,32 @@
     [dataLengthString release];
     
     NSURLResponse *response;
-    NSError *error;
+    NSError *error = nil;
 	[NSURLConnection sendSynchronousRequest:request
                                          returningResponse:&response error:&error];
     
     if (error != nil && [error code]) {
-        UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Error!" message:@"Die Produkte konnten nicht hinzugefügt werden!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-        [alert show];
-    }
+        RIButtonItem *cancelButton = [[RIButtonItem alloc] init];
+        cancelButton.label = @"Abbrechen";
+        cancelButton.action = ^
+        {
+            // do nothing
+        };
+        
+        RIButtonItem *repeatButton = [[RIButtonItem alloc] init];
+        repeatButton.label = @"Wiederholen";
+        repeatButton.action = ^
+        {
+            [self saveItemSelection];
+        };
 
-    itemSelectViewController.newItems = nil;
-    [self dismissModalViewControllerAnimated:YES];    
+        UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Error!" message:@"Die Produkte konnten nicht hinzugefügt werden!" cancelButtonItem:cancelButton otherButtonItems:repeatButton, nil] autorelease];
+        
+        [alert show];
+    } else {
+        itemSelectViewController.newItems = nil;
+        [self dismissModalViewControllerAnimated:YES];    
+    }
 }
 
 
