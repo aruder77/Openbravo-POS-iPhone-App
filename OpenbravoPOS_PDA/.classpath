@@ -45,6 +45,6 @@
 	<classpathentry kind="lib" path="lib/Mac_OS_X"/>
 	<classpathentry kind="lib" path="lib/Solaris"/>
 	<classpathentry kind="lib" path="lib/Windows"/>
-	<classpathentry kind="lib" path="/Unicenta.src/build/jar/unicentaopos.jar"/>
+	<classpathentry kind="lib" path="/UnicentaPOS/build/jar/unicentaopos.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
