@@ -29,7 +29,7 @@ public abstract class PrinterWritter {
     private ExecutorService exec;
     
     public PrinterWritter() {
-        exec = Executors.newSingleThreadExecutor();
+        //exec = Executors.newSingleThreadExecutor();
     }
     
     protected abstract void internalWrite(byte[] data);
@@ -48,27 +48,27 @@ public abstract class PrinterWritter {
     }
 
     public void write(final byte[] data) {
-        exec.execute(new Runnable() {
-            public void run() {
+        //exec.execute(new Runnable() {
+        //    public void run() {
                 internalWrite(data);
-            }
-        });
+        //    }
+        //});
     }
     
     public void flush() {
-        exec.execute(new Runnable() {
-            public void run() {
+        //exec.execute(new Runnable() {
+        //    public void run() {
                 internalFlush();
-            }
-        });
+        //    }
+        //});
     }
     
     public void close() {
-        exec.execute(new Runnable() {
-            public void run() {
+        //exec.execute(new Runnable() {
+        //    public void run() {
                 internalClose();
-            }
-        });
-        exec.shutdown();
+        //    }
+        //});
+        initialized = false;
     }
 }

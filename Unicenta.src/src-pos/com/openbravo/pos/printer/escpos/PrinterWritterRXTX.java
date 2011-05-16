@@ -41,7 +41,8 @@ public class PrinterWritterRXTX extends PrinterWritter /* implements SerialPortE
     protected void internalWrite(byte[] data) {
         try {  
             if (m_out == null) {
-                m_PortIdPrinter = CommPortIdentifier.getPortIdentifier(m_sPortPrinter); // Tomamos el puerto                   
+                m_PortIdPrinter = CommPortIdentifier.getPortIdentifier(m_sPortPrinter); // Tomamos el puerto    
+                System.out.println("Opening printer port: " + m_sPortPrinter);
                 m_CommPortPrinter = m_PortIdPrinter.open("PORTID", 2000); // Abrimos el puerto       
 
                 m_out = m_CommPortPrinter.getOutputStream(); // Tomamos el chorro de escritura   
@@ -86,6 +87,8 @@ public class PrinterWritterRXTX extends PrinterWritter /* implements SerialPortE
                 m_out.flush();
                 m_out.close();
                 m_out = null;
+                m_CommPortPrinter.close();
+                System.out.println("Closing printer port: " + m_sPortPrinter);
                 m_CommPortPrinter = null;
                 m_PortIdPrinter = null;
             }

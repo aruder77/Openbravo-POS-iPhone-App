@@ -42,14 +42,6 @@ public class DevicePrinterESCPOS implements DevicePrinter  {
         m_codes = codes;
         m_trans = trans;
 
-        // Inicializamos la impresora
-        m_CommOutputPrinter.init(ESCPOS.INIT);
-
-        m_CommOutputPrinter.write(ESCPOS.SELECT_PRINTER); // A la impresora
-        m_CommOutputPrinter.init(m_codes.getInitSequence());
-        m_CommOutputPrinter.write(m_trans.getCodeTable());
-
-        m_CommOutputPrinter.flush();  
     }
    
     public String getPrinterName() {
@@ -65,6 +57,14 @@ public class DevicePrinterESCPOS implements DevicePrinter  {
     }
     
     public void beginReceipt() {
+        // Inicializamos la impresora
+        m_CommOutputPrinter.init(ESCPOS.INIT);
+
+        m_CommOutputPrinter.write(ESCPOS.SELECT_PRINTER); // A la impresora
+        m_CommOutputPrinter.init(m_codes.getInitSequence());
+        m_CommOutputPrinter.write(m_trans.getCodeTable());
+
+        m_CommOutputPrinter.flush();  
     }
     
     public void printImage(BufferedImage image) {
