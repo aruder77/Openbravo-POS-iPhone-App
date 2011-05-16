@@ -178,7 +178,7 @@
     CheckoutTableViewController *checkoutViewController = [[CheckoutTableViewController alloc] initWithTicket:ticket];
     checkoutViewController.title = @"Bezahlen";
     checkoutViewController.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelItemSelection)] autorelease];
-    checkoutViewController.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveItemSelection)] autorelease]; 
+    checkoutViewController.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(closeTicket)] autorelease]; 
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:checkoutViewController];
     [self.navigationController presentModalViewController:navController animated:YES];
     [checkoutViewController release];
@@ -197,6 +197,11 @@
     [super didReceiveMemoryWarning];
     
     // Release any cached data, images, etc that aren't in use.
+}
+
+- (void)closeTicket
+{
+    
 }
 
 - (void)cancelItemSelection

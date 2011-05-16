@@ -13,6 +13,8 @@
 @implementation CheckoutTableViewController
 
 @synthesize ticket;
+@synthesize footerView;
+@synthesize finishedItems;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -28,6 +30,8 @@
     if (self) {
         self.ticket = pTicket;
         selection = [[NSMutableArray alloc] init];
+        finishedItems = [[NSMutableArray alloc] init];
+        items = [NSMutableArray arrayWithArray:ticket.ticketLines];
     }
     return self;
 }
@@ -51,6 +55,8 @@
     [super viewDidLoad];
 
     [selection removeAllObjects];
+    sum = 0;
+    sumLabel.text = [NSString stringWithFormat:@"%.2f €", sum];
     
     [[NSBundle mainBundle] loadNibNamed:@"SectionFooterView" owner:self options:nil];
     self.tableView.tableFooterView = footerView;
@@ -96,7 +102,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [ticket.ticketLines count];
+    return [items count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -107,7 +113,7 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
-    TicketLine *line = [self.ticket.ticketLines objectAtIndex:indexPath.row];
+    TicketLine *line = [items objectAtIndex:indexPath.row];
     cell.textLabel.text = line.product.name;
     
     return cell;
@@ -120,13 +126,18 @@
 {
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:NO];
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    TicketLine *line = [items objectAtIndex:indexPath.row];
     if (cell.accessoryType == UITableViewCellAccessoryNone) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
         [selection addObject:indexPath];
+        sum += line.product.price;
+        
     } else if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
         cell.accessoryType = UITableViewCellAccessoryNone;
         [selection removeObject:indexPath];
+        sum -= line.product.price;
     }
+    sumLabel.text = [NSString stringWithFormat:@"%.2f €", sum];
 }
 
 @end

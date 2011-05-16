@@ -44,6 +44,10 @@
 		7799996F13523CDE00AFCF4F /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = 7799996E13523CDE00AFCF4F /* Product.m */; };
 		77999972135635D700AFCF4F /* Ticket.m in Sources */ = {isa = PBXBuildFile; fileRef = 77999971135635D700AFCF4F /* Ticket.m */; };
 		77999975135643AE00AFCF4F /* TicketLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 77999974135643AE00AFCF4F /* TicketLine.m */; };
+		77AFF0C91379D7F3001C0EBE /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 77AFF0C21379D7F3001C0EBE /* README.md */; };
+		77AFF0CA1379D7F3001C0EBE /* RIButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 77AFF0C41379D7F3001C0EBE /* RIButtonItem.m */; };
+		77AFF0CB1379D7F3001C0EBE /* UIActionSheet+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 77AFF0C61379D7F3001C0EBE /* UIActionSheet+Blocks.m */; };
+		77AFF0CC1379D7F3001C0EBE /* UIAlertView+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 77AFF0C81379D7F3001C0EBE /* UIAlertView+Blocks.m */; };
 		77E3ECD3136C741400FF7A5E /* ItemSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E3ECD2136C741400FF7A5E /* ItemSelection.m */; };
 		77F2E72513638A5200102469 /* AngerhofLogo_iOS.png in Resources */ = {isa = PBXBuildFile; fileRef = 77F2E72413638A5100102469 /* AngerhofLogo_iOS.png */; };
 /* End PBXBuildFile section */
@@ -111,6 +115,13 @@
 		77999971135635D700AFCF4F /* Ticket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ticket.m; sourceTree = "<group>"; };
 		77999973135643AE00AFCF4F /* TicketLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketLine.h; sourceTree = "<group>"; };
 		77999974135643AE00AFCF4F /* TicketLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketLine.m; sourceTree = "<group>"; };
+		77AFF0C21379D7F3001C0EBE /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		77AFF0C31379D7F3001C0EBE /* RIButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RIButtonItem.h; sourceTree = "<group>"; };
+		77AFF0C41379D7F3001C0EBE /* RIButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RIButtonItem.m; sourceTree = "<group>"; };
+		77AFF0C51379D7F3001C0EBE /* UIActionSheet+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIActionSheet+Blocks.h"; sourceTree = "<group>"; };
+		77AFF0C61379D7F3001C0EBE /* UIActionSheet+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIActionSheet+Blocks.m"; sourceTree = "<group>"; };
+		77AFF0C71379D7F3001C0EBE /* UIAlertView+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+Blocks.h"; sourceTree = "<group>"; };
+		77AFF0C81379D7F3001C0EBE /* UIAlertView+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+Blocks.m"; sourceTree = "<group>"; };
 		77E3ECD1136C741400FF7A5E /* ItemSelection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemSelection.h; sourceTree = "<group>"; };
 		77E3ECD2136C741400FF7A5E /* ItemSelection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemSelection.m; sourceTree = "<group>"; };
 		77F2E72413638A5100102469 /* AngerhofLogo_iOS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AngerhofLogo_iOS.png; sourceTree = "<group>"; };
@@ -163,6 +174,7 @@
 		7722B6651341382E001DA854 /* OpenbravoPOSApp */ = {
 			isa = PBXGroup;
 			children = (
+				77AFF0C01379D745001C0EBE /* UIAlertView+Blocks */,
 				7771CE9B134CB63A00A36621 /* model */,
 				7771CE7E134CA20100A36621 /* json-framework */,
 				7722B66E1341382E001DA854 /* OpenbravoPOSAppAppDelegate.h */,
@@ -249,6 +261,20 @@
 			name = model;
 			sourceTree = "<group>";
 		};
+		77AFF0C01379D745001C0EBE /* UIAlertView+Blocks */ = {
+			isa = PBXGroup;
+			children = (
+				77AFF0C21379D7F3001C0EBE /* README.md */,
+				77AFF0C31379D7F3001C0EBE /* RIButtonItem.h */,
+				77AFF0C41379D7F3001C0EBE /* RIButtonItem.m */,
+				77AFF0C51379D7F3001C0EBE /* UIActionSheet+Blocks.h */,
+				77AFF0C61379D7F3001C0EBE /* UIActionSheet+Blocks.m */,
+				77AFF0C71379D7F3001C0EBE /* UIAlertView+Blocks.h */,
+				77AFF0C81379D7F3001C0EBE /* UIAlertView+Blocks.m */,
+			);
+			name = "UIAlertView+Blocks";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -312,6 +338,7 @@
 				77F2E72513638A5200102469 /* AngerhofLogo_iOS.png in Resources */,
 				7791556E1364664E008E3474 /* edit_group.png in Resources */,
 				7791557113646B1D008E3474 /* empty.png in Resources */,
+				77AFF0C91379D7F3001C0EBE /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,6 +372,9 @@
 				77999975135643AE00AFCF4F /* TicketLine.m in Sources */,
 				77971BB31367765300F478B5 /* ProductSelectionTableViewController.m in Sources */,
 				77E3ECD3136C741400FF7A5E /* ItemSelection.m in Sources */,
+				77AFF0CA1379D7F3001C0EBE /* RIButtonItem.m in Sources */,
+				77AFF0CB1379D7F3001C0EBE /* UIActionSheet+Blocks.m in Sources */,
+				77AFF0CC1379D7F3001C0EBE /* UIAlertView+Blocks.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

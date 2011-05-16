@@ -14,7 +14,11 @@
     
     Ticket *ticket;
     
+    NSMutableArray *items;
     NSMutableArray *selection;
+    NSMutableArray *finishedItems;
+    
+    float sum;
     
     IBOutlet UIView *footerView;
     IBOutlet UILabel *sumLabel;
@@ -23,6 +27,8 @@
 @property(nonatomic, retain) Ticket *ticket;
 
 @property(nonatomic, retain) IBOutlet UIView *footerView;
+
+@property(nonatomic, retain) NSMutableArray *finishedItems;
 
 - (id) initWithTicket:(Ticket *)ticket;
 
