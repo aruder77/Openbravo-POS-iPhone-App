@@ -31,13 +31,15 @@
         self.ticket = pTicket;
         selection = [[NSMutableArray alloc] init];
         finishedItems = [[NSMutableArray alloc] init];
-        items = [NSMutableArray arrayWithArray:ticket.ticketLines];
+        items = [[NSMutableArray arrayWithArray:ticket.ticketLines] retain];
     }
     return self;
 }
 
 - (void)dealloc
 {
+    [finishedItems release];
+    [items release];
     [selection release];
     [super dealloc];
 }
@@ -56,10 +58,19 @@
 
     [selection removeAllObjects];
     sum = 0;
-    sumLabel.text = [NSString stringWithFormat:@"%.2f €", sum];
+
+    UIBarButtonItem *flexibleSpaceButtonItem = [[UIBarButtonItem alloc]
+                                           initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                           target:nil action:nil];
+    UIBarButtonItem *checkoutButtonItem = [[UIBarButtonItem alloc]
+                                           initWithBarButtonSystemItem:UIBarButtonSystemItemPageCurl
+                                           target:self action:nil];
+    self.toolbarItems = [NSArray arrayWithObjects:flexibleSpaceButtonItem, checkoutButtonItem, nil];
+
     
     [[NSBundle mainBundle] loadNibNamed:@"SectionFooterView" owner:self options:nil];
     self.tableView.tableFooterView = footerView;
+    sumLabel.text = [NSString stringWithFormat:@"%.2f €", sum];
 }
 
 - (void)viewDidUnload
@@ -130,12 +141,12 @@
     if (cell.accessoryType == UITableViewCellAccessoryNone) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
         [selection addObject:indexPath];
-        sum += line.product.price;
+        sum += line.price;
         
     } else if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
         cell.accessoryType = UITableViewCellAccessoryNone;
         [selection removeObject:indexPath];
-        sum -= line.product.price;
+        sum -= line.price;
     }
     sumLabel.text = [NSString stringWithFormat:@"%.2f €", sum];
 }
