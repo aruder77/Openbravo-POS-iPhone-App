@@ -127,7 +127,7 @@ public class TicketDAO extends BaseJdbcDAO implements Serializable {
             con = getConnection();
             //prepare statement
             ps = con.prepareStatement(sqlStr);
-            ps.setString(1, ticket.getM_sId());
+            ps.setString(1, ticket.getId());
             ps.setString(2, ticket.getName());
             ByteArrayOutputStream bytes = new ByteArrayOutputStream();
             ObjectOutputStream out = new ObjectOutputStream(bytes);

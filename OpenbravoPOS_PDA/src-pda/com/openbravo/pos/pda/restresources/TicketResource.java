@@ -5,6 +5,7 @@
 
 package com.openbravo.pos.pda.restresources;
 
+import com.openbravo.basic.BasicException;
 import com.openbravo.pos.pda.bo.RestaurantManager;
 import com.openbravo.pos.pda.dao.TaxDAO;
 import com.openbravo.pos.pda.dao.TicketDAO;
@@ -17,6 +18,7 @@ import com.openbravo.pos.ticket.TicketLineInfo;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Properties;
 import java.util.Set;
 import javax.ejb.Singleton;
 import javax.ws.rs.Consumes;
@@ -45,8 +47,8 @@ public class TicketResource {
         for (Place place : places) {
             TicketInfo ticket = manager.findTicket(place.getId());
             if (ticket != null) {
-                System.out.println("Place ID: " + place.getId() + " Ticket ID: " + ticket.getM_sId() + "#" + ticket.getName());
-                ticket.setM_Customer(null);
+                System.out.println("Place ID: " + place.getId() + " Ticket ID: " + ticket.getId() + "#" + ticket.getName());
+                ticket.setCustomer(null);
                 ticket.setTaxes(null);
                 tickets.add(ticket);
             }
@@ -59,14 +61,15 @@ public class TicketResource {
     @Path("ticket")
     @Produces("application/json")
     public TicketInfo getTicket(@QueryParam("place") String placeId) {
+    	System.out.println("Place-ID: " + placeId);
         TicketInfo ticket = manager.findTicket(placeId);
         if (ticket != null) {
-            ticket.setM_Customer(null);
+            ticket.setCustomer(null);
             ticket.setTaxes(null);
         } else {
             manager.initTicket(placeId);
             ticket = manager.findTicket(placeId);
-            ticket.setM_Customer(null);
+            ticket.setCustomer(null);
             ticket.setTaxes(null);
         }
         return ticket;
@@ -108,13 +111,20 @@ public class TicketResource {
             } else {
                 ticketLine.getAttributes().setProperty("product.option", "");
             }
-            String detailText = (String)product.getAttributes().get("detailText");
+            String detailText = null;
+            Properties productProperties = product.getAttributes();
+            if (productProperties != null) {
+            	detailText = (String)productProperties.getProperty("detailText");
+            }
             if (detailText != null) {
                 ticketLine.getAttributes().setProperty("product.detailText", detailText);
             } else {
                 ticketLine.getAttributes().setProperty("product.detailText", "");
             }
-            String printer = (String)product.getAttributes().get("printer");
+            String printer = null;
+            if (productProperties != null) {
+            	printer = (String)product.getAttributes().get("printer");
+            }
             if (printer != null) {
                 ticketLine.getAttributes().setProperty("product.printer", printer);
             } else {
@@ -177,4 +187,18 @@ public class TicketResource {
             tp.PrintPDATicket(place.getName(), ticket, printerName);
         }
     }    
+    
+    
+    @DELETE
+    @Path("/closeTicket")
+    public void closeTicket(@QueryParam("place") String place) {
+    	System.out.println("TicketId: " + place);
+        TicketInfo ticket = manager.findTicket(place);
+        CheckoutHelper helper = new CheckoutHelper();
+        try {
+			helper.checkout(ticket, place);
+		} catch (BasicException e) {
+			e.printStackTrace();
+		}
+    }
 }

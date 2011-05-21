@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src-pda"/>
+	<classpathentry kind="src" path="src-beans"/>
+	<classpathentry kind="src" path="src-data"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.launching.macosx.MacOSXType/JVM Contents (MacOS X Default)">
 		<attributes>
 			<attribute name="owner.project.facets" value="java"/>

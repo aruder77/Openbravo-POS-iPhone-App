@@ -33,6 +33,8 @@ import java.util.Properties;
 import java.util.UUID;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.openbravo.data.loader.LocalRes;
+
 /**
  *
  * @author jaroslawwozniak
@@ -87,11 +89,11 @@ public class TicketInfo implements Serializable, Externalizable {
         this.attributes = attributes;
     }
 
-    public void setM_Customer(CustomerInfoExt m_Customer) {
+    public void setCustomer(CustomerInfoExt m_Customer) {
         this.m_Customer = m_Customer;
     }
 
-    public void setM_User(UserInfo m_User) {
+    public void setUser(UserInfo m_User) {
         this.m_User = m_User;
     }
 
@@ -99,7 +101,7 @@ public class TicketInfo implements Serializable, Externalizable {
         this.m_aLines = m_aLines;
     }
 
-    public void setM_dDate(Date m_dDate) {
+    public void setDate(Date m_dDate) {
         this.m_dDate = m_dDate;
     }
 
@@ -107,15 +109,15 @@ public class TicketInfo implements Serializable, Externalizable {
         TicketInfo.m_dateformat = m_dateformat;
     }
 
-    public void setM_iTicketId(int m_iTicketId) {
+    public void setTicketId(int m_iTicketId) {
         this.m_iTicketId = m_iTicketId;
     }
 
-    public void setM_sActiveCash(String m_sActiveCash) {
+    public void setActiveCash(String m_sActiveCash) {
         this.m_sActiveCash = m_sActiveCash;
     }
 
-    public void setM_sId(String m_sId) {
+    public void setId(String m_sId) {
         this.m_sId = m_sId;
     }
 
@@ -127,19 +129,19 @@ public class TicketInfo implements Serializable, Externalizable {
         this.taxes = taxes;
     }
 
-    public void setTickettype(int tickettype) {
+    public void setTicketType(int tickettype) {
         this.tickettype = tickettype;
     }
 
-    public Properties getAttributes() {
+    public Properties getProperties() {
         return attributes;
     }
 
-    public CustomerInfoExt getM_Customer() {
+    public CustomerInfoExt getCustomer() {
         return m_Customer;
     }
 
-    public UserInfo getM_User() {
+    public UserInfo getUser() {
         return m_User;
     }
 
@@ -147,7 +149,7 @@ public class TicketInfo implements Serializable, Externalizable {
         return m_aLines;
     }
 
-    public Date getM_dDate() {
+    public Date getDate() {
         return m_dDate;
     }
 
@@ -155,15 +157,15 @@ public class TicketInfo implements Serializable, Externalizable {
         return m_dateformat;
     }
 
-    public int getM_iTicketId() {
+    public int getTicketId() {
         return m_iTicketId;
     }
 
-    public String getM_sActiveCash() {
+    public String getActiveCash() {
         return m_sActiveCash;
     }
 
-    public String getM_sId() {
+    public String getId() {
         return m_sId;
     }
 
@@ -179,7 +181,7 @@ public class TicketInfo implements Serializable, Externalizable {
         return taxes;
     }
 
-    public int getTickettype() {
+    public int getTicketType() {
         return tickettype;
     }
 
@@ -198,6 +200,10 @@ public class TicketInfo implements Serializable, Externalizable {
 
     public List<TicketLineInfo> getLines() {
         return m_aLines;
+    }
+
+    public String getReturnMessage(){
+        return LocalRes.getIntString("button.ok");
     }
 
     public void writeExternal(ObjectOutput out) throws IOException {

@@ -76,6 +76,10 @@ public class PropertyUtils {
     public String getDBUser() {
         return m_propsconfig.getProperty("db.user");
     }
+    
+    public String getHost() {
+    	return m_propsconfig.getProperty("machine.hostname");
+    }
 
     public String getDBPassword() {
         CryptUtils cypher = new CryptUtils("cypherkey" + getDBUser());

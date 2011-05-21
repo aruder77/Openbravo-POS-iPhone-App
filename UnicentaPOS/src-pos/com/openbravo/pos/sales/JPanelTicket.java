@@ -19,50 +19,23 @@
 
 package com.openbravo.pos.sales;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
+import java.awt.Component;
+import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
-import java.util.Date;
-
-import com.openbravo.data.gui.ComboBoxValModel;
-import com.openbravo.data.gui.MessageInf;
-import com.openbravo.pos.printer.*;
-
-import com.openbravo.pos.forms.JPanelView;
-import com.openbravo.pos.forms.AppView;
-import com.openbravo.pos.forms.AppLocal;
-import com.openbravo.pos.panels.JProductFinder;
-import com.openbravo.pos.scale.ScaleException;
-import com.openbravo.pos.payment.JPaymentSelect;
-import com.openbravo.basic.BasicException;
-import com.openbravo.data.gui.ListKeyed;
-import com.openbravo.data.loader.SentenceList;
-import com.openbravo.pos.customers.CustomerInfoExt;
-import com.openbravo.pos.customers.DataLogicCustomers;
-import com.openbravo.pos.customers.JCustomerFinder;
-import com.openbravo.pos.scripting.ScriptEngine;
-import com.openbravo.pos.scripting.ScriptException;
-import com.openbravo.pos.scripting.ScriptFactory;
-import com.openbravo.pos.forms.DataLogicSystem;
-import com.openbravo.pos.forms.DataLogicSales;
-import com.openbravo.pos.forms.BeanFactoryApp;
-import com.openbravo.pos.forms.BeanFactoryException;
-import com.openbravo.pos.inventory.TaxCategoryInfo;
-import com.openbravo.pos.payment.JPaymentSelectReceipt;
-import com.openbravo.pos.payment.JPaymentSelectRefund;
-import com.openbravo.pos.ticket.ProductInfoExt;
-import com.openbravo.pos.ticket.TaxInfo;
-import com.openbravo.pos.ticket.TicketInfo;
-import com.openbravo.pos.ticket.TicketLineInfo;
-import com.openbravo.pos.util.JRPrinterAWT300;
-import com.openbravo.pos.util.ReportUtils;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
+
 import javax.print.PrintService;
+import javax.swing.JComponent;
+import javax.swing.JPanel;
+
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -70,6 +43,39 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRMapArrayDataSource;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
+
+import com.openbravo.basic.BasicException;
+import com.openbravo.data.gui.ComboBoxValModel;
+import com.openbravo.data.gui.ListKeyed;
+import com.openbravo.data.gui.MessageInf;
+import com.openbravo.data.loader.SentenceList;
+import com.openbravo.pos.customers.CustomerInfoExt;
+import com.openbravo.pos.customers.DataLogicCustomers;
+import com.openbravo.pos.customers.JCustomerFinder;
+import com.openbravo.pos.forms.AppLocal;
+import com.openbravo.pos.forms.AppView;
+import com.openbravo.pos.forms.BeanFactoryApp;
+import com.openbravo.pos.forms.BeanFactoryException;
+import com.openbravo.pos.forms.DataLogicSales;
+import com.openbravo.pos.forms.DataLogicSystem;
+import com.openbravo.pos.forms.JPanelView;
+import com.openbravo.pos.inventory.TaxCategoryInfo;
+import com.openbravo.pos.panels.JProductFinder;
+import com.openbravo.pos.payment.JPaymentSelect;
+import com.openbravo.pos.payment.JPaymentSelectReceipt;
+import com.openbravo.pos.payment.JPaymentSelectRefund;
+import com.openbravo.pos.printer.TicketParser;
+import com.openbravo.pos.printer.TicketPrinterException;
+import com.openbravo.pos.scale.ScaleException;
+import com.openbravo.pos.scripting.ScriptEngine;
+import com.openbravo.pos.scripting.ScriptException;
+import com.openbravo.pos.scripting.ScriptFactory;
+import com.openbravo.pos.ticket.ProductInfoExt;
+import com.openbravo.pos.ticket.TaxInfo;
+import com.openbravo.pos.ticket.TicketInfo;
+import com.openbravo.pos.ticket.TicketLineInfo;
+import com.openbravo.pos.util.JRPrinterAWT300;
+import com.openbravo.pos.util.ReportUtils;
 
 /**
  *
