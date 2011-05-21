@@ -19,7 +19,16 @@
 
 package com.openbravo.pos.ticket;
 
+import com.openbravo.basic.BasicException;
+import com.openbravo.data.loader.DataRead;
+import com.openbravo.data.loader.DataWrite;
+import com.openbravo.data.loader.SerializableWrite;
+import com.openbravo.pos.forms.AppLocal;
 import com.openbravo.pos.pda.util.FormatUtils;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Properties;
 
@@ -27,7 +36,7 @@ import java.util.Properties;
  *
  * @author jaroslawwozniak
  */
-public class TicketLineInfo implements Serializable {
+public class TicketLineInfo implements Serializable, SerializableWrite {
 
     private static final long serialVersionUID = 6608012948284450199L;
     private String m_sTicket;
@@ -38,8 +47,10 @@ public class TicketLineInfo implements Serializable {
     private String productid;
     private Properties attributes;
     private transient ProductInfo product;
+    private String attsetinstid;
 
     public TicketLineInfo() {
+        attributes = new Properties();
     }
 
     public TicketLineInfo(ProductInfo product, double price, TaxInfo tax) {
@@ -156,5 +167,24 @@ public class TicketLineInfo implements Serializable {
 
     public String printMultiply() {
         return FormatUtils.formatDouble(multiply);
+    }
+
+    public void writeValues(DataWrite dp) throws BasicException {
+        dp.setString(1, m_sTicket);
+        dp.setInt(2, new Integer(m_iLine));
+        dp.setString(3, productid);
+        dp.setString(4, null);
+
+        dp.setDouble(5, new Double(multiply));
+        dp.setDouble(6, new Double(price));
+
+        dp.setString(7, tax.getId());
+        try {
+            ByteArrayOutputStream o = new ByteArrayOutputStream();
+            attributes.storeToXML(o, AppLocal.APP_NAME, "UTF-8");
+            dp.setBytes(8, o.toByteArray());
+        } catch (IOException e) {
+            dp.setBytes(8, null);
+        }
     }
 }

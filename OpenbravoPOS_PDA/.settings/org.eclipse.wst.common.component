@@ -3,6 +3,8 @@
     <wb-module deploy-name="OpenbravoPOS_PDA2">
         <wb-resource deploy-path="/" source-path="/web"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src-pda"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src-data"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src-beans"/>
         <property name="context-root" value="pda"/>
         <property name="java-output-path" value="/OpenbravoPOS_PDA2/build/classes"/>
     </wb-module>

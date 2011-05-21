@@ -44,7 +44,6 @@ public class TestPrint {
 
         Session s = null;
         try {
-
             s = new Session(properties.getUrl(), properties.getDBUser(), properties.getDBPassword());
         } catch (SQLException ex) {
             ex.printStackTrace();

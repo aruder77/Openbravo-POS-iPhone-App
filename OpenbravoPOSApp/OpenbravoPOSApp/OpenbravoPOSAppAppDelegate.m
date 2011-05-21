@@ -92,6 +92,7 @@ static OpenbravoPOSAppAppDelegate *instance;
             NSDictionary *attrDict = [productsDict objectForKey:@"attributes"];
             product.attributes = [[[NSMutableDictionary alloc] init ] autorelease];
             product.options = [[[NSMutableArray alloc] init] autorelease];
+            
             if (attrDict != nil) {
                 id entryDict = [attrDict objectForKey:@"entry"];
                 if (entryDict != nil) {

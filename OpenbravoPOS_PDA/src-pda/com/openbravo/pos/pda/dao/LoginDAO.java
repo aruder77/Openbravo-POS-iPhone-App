@@ -37,7 +37,7 @@ public class LoginDAO extends BaseJdbcDAO {
         PreparedStatement ps = null;
         ResultSet rs = null;
         UserInfo user = null;
-        String sqlStr = "SELECT NAME, APPPASSWORD FROM PEOPLE WHERE NAME = ? AND APPPASSWORD ";
+        String sqlStr = "SELECT NAME, APPPASSWORD, ID FROM PEOPLE WHERE NAME = ? AND APPPASSWORD ";
         String end = "";
         if (password.equals("")) {
             end = "IS NULL";
@@ -84,6 +84,7 @@ public class LoginDAO extends BaseJdbcDAO {
         UserInfo user = new UserInfo();
         rs.next();
         user.setLogin(rs.getString("name"));
+        user.setId(rs.getString("id"));
         if (rs.getString("apppassword") == null) {
             user.setPassword("");
         } else {

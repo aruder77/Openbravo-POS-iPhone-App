@@ -201,7 +201,20 @@
 
 - (void)closeTicket
 {
+    [self dismissModalViewControllerAnimated:YES];
     
+    NSString *baseUrl = [OpenbravoPOSAppAppDelegate getWebAppURL];
+    NSString *url = [NSString stringWithFormat:@"%@/tickets/closeTicket?place=%@", baseUrl, self.table.id];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
+    
+    [request setHTTPMethod:@"DELETE"];
+    NSURLResponse *response;
+    NSError *error;
+    [NSURLConnection sendSynchronousRequest:request
+                          returningResponse:&response error:&error];
+    
+    
+    [self.navigationController popViewControllerAnimated:NO];
 }
 
 - (void)cancelItemSelection
@@ -320,8 +333,8 @@
     }
     sum = 0;
     ticket = [[Ticket alloc] init];
-    ticket.id = [dict objectForKey:@"m_sId"];
-    ticket.name = [dict objectForKey:@"m_iTicketId"];
+    ticket.id = [dict objectForKey:@"id"];
+    ticket.name = [dict objectForKey:@"ticketId"];
     NSMutableArray *ticketLines = [[NSMutableArray alloc] init];
     id linesId = [dict objectForKey:@"m_aLines"];
     NSArray *lines = linesId;

@@ -55,6 +55,11 @@ public class RestaurantManager {
     private CategoryDAO category;
     private TaxDAO tax;
     private TaxesLogic taxesLogic;
+    
+    public RestaurantManager() {
+        tax = new TaxDAO();
+        taxesLogic = new TaxesLogic(tax.getTaxList());
+    }
 
     public List<Floor> findAllFloors() {
         floor = new FloorDAO();
@@ -149,8 +154,6 @@ public class RestaurantManager {
 
     public List<String> findAllTaxRatesByCategory(List<ProductInfo> products) {
         List<String> list = new ArrayList<String>();
-        tax = new TaxDAO();
-        taxesLogic = new TaxesLogic(tax.getTaxList());
         for(ProductInfo prod: products) {
             list.add(String.valueOf(taxesLogic.getTaxInfo(prod.getTaxcat()).getRate()));
         }
@@ -180,8 +183,6 @@ public class RestaurantManager {
         ticket = new TicketDAO();
         product = new ProductDAO();
         category = new CategoryDAO();
-        tax = new TaxDAO();
-        taxesLogic = new TaxesLogic(tax.getTaxList());
 
         TicketInfo obj = ticket.getTicket(ticketId);
         ProductInfo productObj = product.findProductById(productId);
@@ -198,7 +199,9 @@ public class RestaurantManager {
 
     public BigDecimal getTotalOfaTicket(String place) {
         double total = 0;
-        for (TicketLineInfo line : findTicket(place).getM_aLines()) {
+        System.out.println("Total place: " + place);
+        TicketInfo ticket = findTicket(place);
+        for (TicketLineInfo line : ticket.getM_aLines()) {
             total += line.getMultiply() * line.getPrice();
         }
         return BigDecimal.valueOf(total);
@@ -211,7 +214,7 @@ public class RestaurantManager {
 
     public void refreshTax(TicketInfo ticket) {
         for (TicketLineInfo line : ticket.getLines()) {
-            line.setTax(taxesLogic.getTaxInfo(line.getProductTaxCategoryID(), ticket.getM_Customer()));
+            line.setTax(taxesLogic.getTaxInfo(line.getProductTaxCategoryID(), ticket.getCustomer()));
         }
     }
 }
