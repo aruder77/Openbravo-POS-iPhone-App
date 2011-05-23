@@ -23,6 +23,7 @@
 @synthesize tableViewCell;
 @synthesize headerView;
 @synthesize footerView;
+@synthesize addedItems;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {

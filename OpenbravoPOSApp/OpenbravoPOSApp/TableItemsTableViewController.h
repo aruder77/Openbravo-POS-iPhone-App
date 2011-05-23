@@ -36,10 +36,12 @@
 -(void)updateTicket;
 -(void)readTicket:(NSDictionary*) dict;
 - (void)deleteRowAtIndexPath:(NSIndexPath *)indexPath;
+- (void)sendItems;
 
 @property(nonatomic, assign) IBOutlet UITableViewCell *tableViewCell;
 @property(nonatomic, assign) IBOutlet UIView *headerView;
 @property(nonatomic, assign) IBOutlet UIView *footerView;
 @property(nonatomic, retain) Table* table;
+@property(nonatomic, retain) NSMutableArray *addedItems;
 
 @end

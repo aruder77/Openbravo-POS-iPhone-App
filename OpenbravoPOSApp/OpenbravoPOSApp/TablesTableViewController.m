@@ -11,6 +11,7 @@
 #import "OpenbravoPOSAppAppDelegate.h"
 #import "JSON.h"
 #import "Table.h"
+#import "UIAlertView+Blocks.h"
 
 @implementation TablesTableViewController
 
@@ -111,6 +112,26 @@
 {
     NSString *baseUrl = [OpenbravoPOSAppAppDelegate getWebAppURL];
     if (tableItemsViewController.table != nil) {
+        if ([tableItemsViewController.addedItems count] > 0) {
+            RIButtonItem *cancelButton = [[RIButtonItem alloc] init];
+            cancelButton.label = @"Nein";
+            cancelButton.action = ^
+            {
+                // do nothing
+            };
+            
+            RIButtonItem *repeatButton = [[RIButtonItem alloc] init];
+            repeatButton.label = @"Ja";
+            repeatButton.action = ^
+            {
+                [tableItemsViewController sendItems];
+            };
+            
+            UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Warning!" message:@"Bestellung ist noch nicht an die Bar/Kueche gesendet worden! Senden?" cancelButtonItem:cancelButton otherButtonItems:repeatButton, nil] autorelease];
+            
+            [alert show];
+        }
+        
         NSString *url = [NSString stringWithFormat:@"%@/tickets/deleteTicketIfEmpty?place=%@", baseUrl, tableItemsViewController.table.id];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
         
