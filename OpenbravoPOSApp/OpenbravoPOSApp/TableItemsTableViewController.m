@@ -175,13 +175,13 @@
 
 - (void)checkout
 {
-    CheckoutTableViewController *checkoutViewController = [[CheckoutTableViewController alloc] initWithTicket:ticket];
+    checkoutViewController = [[CheckoutTableViewController alloc] initWithTicket:ticket];
     checkoutViewController.title = @"Bezahlen";
     checkoutViewController.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelItemSelection)] autorelease];
     checkoutViewController.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(closeTicket)] autorelease]; 
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:checkoutViewController];
+    navController.toolbarHidden = NO;
     [self.navigationController presentModalViewController:navController animated:YES];
-    [checkoutViewController release];
     [navController release];
 }
 
@@ -199,49 +199,22 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-- (void)closeTicket
-{
-    [self dismissModalViewControllerAnimated:YES];
-    
-    NSString *baseUrl = [OpenbravoPOSAppAppDelegate getWebAppURL];
-    NSString *url = [NSString stringWithFormat:@"%@/tickets/closeTicket?place=%@", baseUrl, self.table.id];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
-    
-    [request setHTTPMethod:@"DELETE"];
-    NSURLResponse *response;
-    NSError *error;
-    [NSURLConnection sendSynchronousRequest:request
-                          returningResponse:&response error:&error];
-    
-    
-    [self.navigationController popViewControllerAnimated:NO];
-}
-
 - (void)cancelItemSelection
 {
     itemSelectViewController.newItems = nil;
+    if (checkoutViewController != nil) {
+        [checkoutViewController release];
+    }
     
     [self dismissModalViewControllerAnimated:YES];
 }
 
-- (void)saveItemSelection {
-    NSString *baseUrl = [OpenbravoPOSAppAppDelegate getWebAppURL];
-    NSString *url = [NSString stringWithFormat:@"%@/tickets/ticketProducts", baseUrl];
+- (void)postTicketUpdateToURL:(NSString *) url forTicket:(NSString *) ticketId withProducts:( NSArray *) productIds withErrorMsg:(NSString *) errorMsg {
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
     NSMutableDictionary *jsonObject = [[NSMutableDictionary alloc] init];
-    NSMutableArray *ticketsArray = [[NSMutableArray alloc] init ];
     
-    for (int i = 0; i < [itemSelectViewController.newItems count]; i++) {
-        ItemSelection *itemSelection = [itemSelectViewController.newItems objectAtIndex:i];
-        Product *product = [itemSelection product];
-        NSString *idWithOption = [NSString stringWithFormat:@"%@#%@", product.id, itemSelection.selectedOption];
-        [ticketsArray addObject:idWithOption];
-        [addedItems addObject:product];
-    }
-    
-    [jsonObject setValue:ticketsArray forKey:@"productIds"];
-    [jsonObject setValue:table.id forKey:@"ticketId"];
-    [ticketsArray release];
+    [jsonObject setValue:productIds forKey:@"productIds"];
+    [jsonObject setValue:ticketId forKey:@"ticketId"];
     
     SBJsonWriter *writer = [[SBJsonWriter alloc] init];
     NSData *data = [writer dataWithObject:jsonObject];
@@ -272,10 +245,10 @@
         repeatButton.label = @"Wiederholen";
         repeatButton.action = ^
         {
-            [self saveItemSelection];
+            [self postTicketUpdateToURL:url forTicket:ticketId withProducts:productIds withErrorMsg:errorMsg];
         };
 
-        UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Error!" message:@"Die Produkte konnten nicht hinzugefügt werden!" cancelButtonItem:cancelButton otherButtonItems:repeatButton, nil] autorelease];
+        UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Error!" message:errorMsg cancelButtonItem:cancelButton otherButtonItems:repeatButton, nil] autorelease];
         
         [alert show];
     } else {
@@ -283,6 +256,62 @@
         [self dismissModalViewControllerAnimated:YES];    
     }
 }
+
+- (void)closeTicket
+{    
+    [self dismissModalViewControllerAnimated:YES];
+    
+    NSString *baseUrl = [OpenbravoPOSAppAppDelegate getWebAppURL];
+    NSString *url = [NSString stringWithFormat:@"%@/tickets/closeTicketForItems", baseUrl];
+    [checkoutViewController removeSelectedItems];
+    if ([checkoutViewController.items count] > 0) {
+        NSMutableArray *products = [[NSMutableArray alloc] init ];
+        for (int i = 0; i < [checkoutViewController.finishedItems count]; i++) {
+            TicketLine *line = [checkoutViewController.finishedItems objectAtIndex:i];
+            [products addObject:[line product].id];
+        }
+        [self postTicketUpdateToURL:url forTicket:table.id withProducts:products withErrorMsg:@"Das Ticket konnte nicht abgeschlossen werden!"];    
+        [self updateTicket];
+        [self.tableView reloadData];
+    } else {    
+        url = [NSString stringWithFormat:@"%@/tickets/closeTicket?place=%@", baseUrl, self.table.id];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
+        
+        [request setHTTPMethod:@"DELETE"];
+        NSURLResponse *response;
+        NSError *error;
+        [NSURLConnection sendSynchronousRequest:request
+                              returningResponse:&response error:&error];
+
+        [self.navigationController popViewControllerAnimated:NO];
+    }
+    
+    [checkoutViewController release];
+    checkoutViewController = nil;
+    
+}
+
+
+- (void)saveItemSelection
+{
+    NSMutableArray *ticketsArray = [[NSMutableArray alloc] init ];
+    
+    for (int i = 0; i < [itemSelectViewController.newItems count]; i++) {
+        ItemSelection *itemSelection = [itemSelectViewController.newItems objectAtIndex:i];
+        Product *product = [itemSelection product];
+        NSString *idWithOption = [NSString stringWithFormat:@"%@#%@", product.id, itemSelection.selectedOption];
+        [ticketsArray addObject:idWithOption];
+        [addedItems addObject:product];
+    }
+    
+    NSString *baseUrl = [OpenbravoPOSAppAppDelegate getWebAppURL];
+    NSString *url = [NSString stringWithFormat:@"%@/tickets/ticketProducts", baseUrl];
+    [self postTicketUpdateToURL:url forTicket:table.id withProducts:ticketsArray withErrorMsg:@"Die Produkte konnten nicht hinzugefügt werden!"];
+    
+    [ticketsArray release];
+}
+     
+
 
 
 -(void)updateTicket

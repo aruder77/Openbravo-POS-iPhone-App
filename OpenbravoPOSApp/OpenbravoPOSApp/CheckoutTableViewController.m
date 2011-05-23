@@ -15,6 +15,8 @@
 @synthesize ticket;
 @synthesize footerView;
 @synthesize finishedItems;
+@synthesize items;
+@synthesize selection;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -55,22 +57,61 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     [selection removeAllObjects];
     sum = 0;
-
+    
+    UIBarButtonItem *selectAllItem = [[UIBarButtonItem alloc] initWithTitle:@"Alle" style:UIBarButtonItemStyleBordered target:self action:@selector(selectAllItems)];
+    
+    UIBarButtonItem *selectNoItem = [[UIBarButtonItem alloc] initWithTitle:@"Keine" style:UIBarButtonItemStyleBordered target:self action:@selector(selectNoItems)];
+    
     UIBarButtonItem *flexibleSpaceButtonItem = [[UIBarButtonItem alloc]
                                            initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                            target:nil action:nil];
     UIBarButtonItem *checkoutButtonItem = [[UIBarButtonItem alloc]
                                            initWithBarButtonSystemItem:UIBarButtonSystemItemPageCurl
-                                           target:self action:nil];
-    self.toolbarItems = [NSArray arrayWithObjects:flexibleSpaceButtonItem, checkoutButtonItem, nil];
+                                           target:self action:@selector(removeSelectedItems)];
+    self.toolbarItems = [NSArray arrayWithObjects:selectAllItem, selectNoItem, flexibleSpaceButtonItem, checkoutButtonItem, nil];
 
     
     [[NSBundle mainBundle] loadNibNamed:@"SectionFooterView" owner:self options:nil];
     self.tableView.tableFooterView = footerView;
     sumLabel.text = [NSString stringWithFormat:@"%.2f €", sum];
+}
+
+- (void)updateSum
+{
+    sum = 0;
+    for (int i = 0; i < [selection count]; i++) {
+        TicketLine *line = [selection objectAtIndex:i];
+        sum += line.price;
+    }
+    sumLabel.text = [NSString stringWithFormat:@"%.2f €", sum];    
+}
+
+- (void)selectAllItems
+{
+    [selection addObjectsFromArray:items];
+    [self updateSum];
+    [self.tableView reloadData];
+}
+
+- (void)selectNoItems
+{
+    [selection removeAllObjects];
+    [self updateSum];
+    [self.tableView reloadData];
+}
+
+- (void)removeSelectedItems
+{
+    [finishedItems addObjectsFromArray:selection];
+    [items removeObjectsInArray:selection];
+    [selection removeAllObjects];
+
+    sum = 0;
+    sumLabel.text = [NSString stringWithFormat:@"%.2f €", sum];
+    [self.tableView reloadData];
 }
 
 - (void)viewDidUnload
@@ -122,10 +163,17 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
     }
     TicketLine *line = [items objectAtIndex:indexPath.row];
     cell.textLabel.text = line.product.name;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%.2f €", line.price];
+    
+    if ([selection containsObject:line]) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    } else {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
     
     return cell;
 }
@@ -140,12 +188,12 @@
     TicketLine *line = [items objectAtIndex:indexPath.row];
     if (cell.accessoryType == UITableViewCellAccessoryNone) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        [selection addObject:indexPath];
+        [selection addObject:line];
         sum += line.price;
         
     } else if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
         cell.accessoryType = UITableViewCellAccessoryNone;
-        [selection removeObject:indexPath];
+        [selection removeObject:line];
         sum -= line.price;
     }
     sumLabel.text = [NSString stringWithFormat:@"%.2f €", sum];

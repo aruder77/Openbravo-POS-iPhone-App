@@ -30,6 +30,12 @@
 
 @property(nonatomic, retain) NSMutableArray *finishedItems;
 
+@property(nonatomic, retain) NSMutableArray *items;
+
+@property(nonatomic, retain) NSMutableArray *selection;
+
 - (id) initWithTicket:(Ticket *)ticket;
+
+- (void)removeSelectedItems;
 
 @end
