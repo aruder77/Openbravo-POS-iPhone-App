@@ -40,6 +40,8 @@
 
 - (void)dealloc
 {
+    [ticket release];
+    [footerView release];
     [finishedItems release];
     [items release];
     [selection release];
@@ -72,6 +74,8 @@
                                            initWithBarButtonSystemItem:UIBarButtonSystemItemPageCurl
                                            target:self action:@selector(removeSelectedItems)];
     self.toolbarItems = [NSArray arrayWithObjects:selectAllItem, selectNoItem, flexibleSpaceButtonItem, checkoutButtonItem, nil];
+    [flexibleSpaceButtonItem release];
+    [checkoutButtonItem release];
 
     
     [[NSBundle mainBundle] loadNibNamed:@"SectionFooterView" owner:self options:nil];

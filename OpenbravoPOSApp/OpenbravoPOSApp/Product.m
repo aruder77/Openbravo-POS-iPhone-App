@@ -18,4 +18,13 @@
 @synthesize options;
 @synthesize price;
 
+- (void)dealloc
+{
+    [name release];
+    [categoryId release];
+    [attributes release];
+    [options release];
+    [super dealloc];
+}
+
 @end

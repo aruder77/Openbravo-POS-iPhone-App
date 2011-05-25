@@ -14,4 +14,9 @@
 @synthesize product;
 @synthesize selectedOption;
 
+- (void) dealloc 
+{
+    [product release];
+    [selectedOption release];
+}
 @end

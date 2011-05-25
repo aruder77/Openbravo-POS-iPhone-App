@@ -16,4 +16,8 @@
 @synthesize price;
 @synthesize multiply;
 
+- (void) dealloc 
+{
+    [product release];
+}
 @end

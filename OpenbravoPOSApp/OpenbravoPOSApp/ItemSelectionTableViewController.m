@@ -27,6 +27,7 @@
 
 - (void)dealloc
 {
+    [newItems release];
     [super dealloc];
 }
 

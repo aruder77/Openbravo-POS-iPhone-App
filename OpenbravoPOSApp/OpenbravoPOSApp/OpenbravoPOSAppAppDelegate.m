@@ -212,6 +212,9 @@ static OpenbravoPOSAppAppDelegate *instance;
 
 - (void)dealloc
 {
+    [categoriesById release];
+    [productsById release];
+    [productsByCategory release];
     [_window release];
     [_navigationController release];
     [super dealloc];

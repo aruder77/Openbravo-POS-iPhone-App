@@ -129,6 +129,8 @@
             
             UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Warning!" message:@"Bestellung ist noch nicht an die Bar/Kueche gesendet worden! Senden?" cancelButtonItem:cancelButton otherButtonItems:repeatButton, nil] autorelease];
             
+            [cancelButton release];
+            [repeatButton release];
             [alert show];
         }
         

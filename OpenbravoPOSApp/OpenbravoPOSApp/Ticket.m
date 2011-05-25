@@ -15,4 +15,10 @@
 @synthesize name;
 @synthesize ticketLines;
 
+- (void) dealloc 
+{
+    [name release];
+    [ticketLines release];
+}
+
 @end

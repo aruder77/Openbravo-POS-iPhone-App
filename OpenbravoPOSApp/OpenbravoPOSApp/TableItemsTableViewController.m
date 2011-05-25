@@ -71,6 +71,12 @@
 
 - (void)dealloc
 {
+    [table release];
+    [tableViewCell release];
+    [headerView release];
+    [footerView release];
+    [addedItems release];
+    
     [addedItems release];
     [itemSelectViewController release];
     [sumLabel release];
@@ -272,6 +278,7 @@
             [products addObject:[line product].id];
         }
         [self postTicketUpdateToURL:url forTicket:table.id withProducts:products withErrorMsg:@"Das Ticket konnte nicht abgeschlossen werden!"];    
+        [products release];
         [self updateTicket];
         [self.tableView reloadData];
     } else {    
@@ -360,6 +367,7 @@
 {
     if (ticket != nil) {
         [ticket release];
+        ticket = nil;
     }
     sum = 0;
     ticket = [[Ticket alloc] init];
