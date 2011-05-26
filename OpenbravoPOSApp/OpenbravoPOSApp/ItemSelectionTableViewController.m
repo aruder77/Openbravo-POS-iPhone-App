@@ -40,13 +40,28 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+- (void)undoAdd
+{
+    if ([newItems count] > 0) {
+        [newItems removeLastObject];
+        itemCount--;
+        self.navigationItem.title = [NSString stringWithFormat:@"x%d", itemCount];
+    }
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];    
-    itemCount = 1;
-    self.navigationItem.title = @"Produkte";
+    
+    UIBarButtonItem *undo = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemUndo target:self action:@selector(undoAdd)];
+    UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    self.toolbarItems = [NSArray arrayWithObjects:space, undo, nil];
+
+    [undo release];
+    [space release];
+    
     delegate = [[OpenbravoPOSAppAppDelegate getInstance] retain];
 }
 
@@ -59,6 +74,9 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    itemCount = 1;
+    self.navigationItem.title = @"Produkte";
 }
 
 - (void)viewDidAppear:(BOOL)animated

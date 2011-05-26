@@ -40,7 +40,6 @@
 
 - (void)dealloc
 {
-    [ticket release];
     [footerView release];
     [finishedItems release];
     [items release];

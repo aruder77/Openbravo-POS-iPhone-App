@@ -176,6 +176,7 @@
     [itemArray release];
     
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:itemSelectViewController];
+    navController.toolbarHidden = NO;
     [self.navigationController presentModalViewController:navController animated:YES];
     [navController release];
 }
@@ -286,8 +287,8 @@
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
         
         [request setHTTPMethod:@"DELETE"];
-        NSURLResponse *response;
-        NSError *error;
+        NSURLResponse *response = nil;
+        NSError *error = nil;
         [NSURLConnection sendSynchronousRequest:request
                               returningResponse:&response error:&error];
 
@@ -295,8 +296,9 @@
     }
     
     [checkoutViewController release];
-    checkoutViewController = nil;
+    checkoutViewController = nil;    
     
+    [addedItems removeAllObjects];
 }
 
 
@@ -422,9 +424,12 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    self.navigationController.toolbarHidden = NO;
+
     [super viewWillAppear:animated];
     [self updateTicket];
     [self.tableView reloadData];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated

@@ -50,6 +50,7 @@
 		77AFF0CC1379D7F3001C0EBE /* UIAlertView+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 77AFF0C81379D7F3001C0EBE /* UIAlertView+Blocks.m */; };
 		77E3ECD3136C741400FF7A5E /* ItemSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E3ECD2136C741400FF7A5E /* ItemSelection.m */; };
 		77F2E72513638A5200102469 /* AngerhofLogo_iOS.png in Resources */ = {isa = PBXBuildFile; fileRef = 77F2E72413638A5100102469 /* AngerhofLogo_iOS.png */; };
+		77F44191138ED7B000C526B8 /* TableSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F44190138ED7B000C526B8 /* TableSelectionViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -125,6 +126,8 @@
 		77E3ECD1136C741400FF7A5E /* ItemSelection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemSelection.h; sourceTree = "<group>"; };
 		77E3ECD2136C741400FF7A5E /* ItemSelection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemSelection.m; sourceTree = "<group>"; };
 		77F2E72413638A5100102469 /* AngerhofLogo_iOS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AngerhofLogo_iOS.png; sourceTree = "<group>"; };
+		77F4418F138ED7B000C526B8 /* TableSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableSelectionViewController.h; sourceTree = "<group>"; };
+		77F44190138ED7B000C526B8 /* TableSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableSelectionViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +204,8 @@
 				778268971349221200BC6625 /* TableItemTableViewCell.xib */,
 				7771CE79134A787200A36621 /* SectionFooterView.xib */,
 				7771CE7C134B9E9600A36621 /* SwitchTableTableHeader.xib */,
+				77F4418F138ED7B000C526B8 /* TableSelectionViewController.h */,
+				77F44190138ED7B000C526B8 /* TableSelectionViewController.m */,
 			);
 			path = OpenbravoPOSApp;
 			sourceTree = "<group>";
@@ -375,6 +380,7 @@
 				77AFF0CA1379D7F3001C0EBE /* RIButtonItem.m in Sources */,
 				77AFF0CB1379D7F3001C0EBE /* UIActionSheet+Blocks.m in Sources */,
 				77AFF0CC1379D7F3001C0EBE /* UIAlertView+Blocks.m in Sources */,
+				77F44191138ED7B000C526B8 /* TableSelectionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
