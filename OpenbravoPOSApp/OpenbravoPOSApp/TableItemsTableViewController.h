@@ -11,6 +11,8 @@
 #import "Ticket.h"
 #import "ItemSelectionTableViewController.h"
 #import "CheckoutTableViewController.h"
+#import "TableSelectionViewController.h"
+
 
 @interface TableItemsTableViewController : UITableViewController {
     
@@ -25,6 +27,8 @@
     UITableViewCell *tableViewCell;
     ItemSelectionTableViewController *itemSelectViewController;
     CheckoutTableViewController *checkoutViewController;
+    
+    TableSelectionViewController *tableSelectionViewController;
     
     IBOutlet UILabel *sumLabel;
     IBOutlet UIView *footerView;

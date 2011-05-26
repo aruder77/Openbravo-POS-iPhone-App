@@ -16,6 +16,7 @@
 #import "TicketLine.h"
 #import "ItemSelection.h"
 #import "UIAlertView+Blocks.h"
+#import <AudioToolbox/AudioToolbox.h>
 
 @implementation TableItemsTableViewController
 
@@ -47,12 +48,14 @@
                                                    initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                    target:nil action:nil];
         UIBarButtonItem *sendItemsButtonItem = [[UIBarButtonItem alloc]
-                                               initWithBarButtonSystemItem:UIBarButtonSystemItemReply
+                                               initWithBarButtonSystemItem:UIBarButtonSystemItemAction
                                                target:self action:@selector(sendItems)];
         UIBarButtonItem *checkoutButtonItem = [[UIBarButtonItem alloc]
                                           initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize
                                           target:self action:@selector(checkout)];
-        self.toolbarItems = [NSArray arrayWithObjects:checkoutButtonItem, flexibleSpaceButtonItem, sendItemsButtonItem, flexibleSpaceButtonItem, addButtonItem, nil];
+        UIBarButtonItem *moveTableButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward target:self action:@selector(moveTable)];
+        
+        self.toolbarItems = [NSArray arrayWithObjects:checkoutButtonItem, flexibleSpaceButtonItem, sendItemsButtonItem, flexibleSpaceButtonItem, moveTableButtonItem, flexibleSpaceButtonItem, addButtonItem, nil];
         
         addedItems = [[NSMutableArray alloc] init];
         
@@ -64,6 +67,7 @@
         [flexibleSpaceButtonItem release];
         [sendItemsButtonItem release];
         [checkoutButtonItem release];
+        [moveTableButtonItem release];
     }
     return self;
 }
@@ -79,8 +83,53 @@
     
     [addedItems release];
     [itemSelectViewController release];
+    [checkoutViewController release];
     [sumLabel release];
     [super dealloc];
+}
+
+- (void) moveTable
+{
+    if (tableSelectionViewController == nil) {
+        tableSelectionViewController = [[TableSelectionViewController alloc] initWithNibName:@"TablesViewController" bundle:nil];
+        tableSelectionViewController.title = @"Tisch auswählen";
+        tableSelectionViewController.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelTableSelection)] autorelease];
+        tableSelectionViewController.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(saveTableSelection)] autorelease]; 
+    }
+
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:tableSelectionViewController];
+    [self.navigationController presentModalViewController:navController animated:YES];
+    [navController release];    
+}
+
+- (void) cancelTableSelection 
+{
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+- (void) saveTableSelection
+{
+    Table *selectedTable = tableSelectionViewController.selectedTable;
+    if (selectedTable != nil) {
+        if ([tableSelectionViewController isTableBusy:tableSelectionViewController.selectedTable]) {
+            // ask if tables should be merged
+        }
+        
+        NSString *baseUrl = [OpenbravoPOSAppAppDelegate getWebAppURL];
+        NSString *url = [NSString stringWithFormat:@"%@/tickets/moveTicket?fromTable=%@&toTable=%@", baseUrl, self.table.id, selectedTable.id];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
+        
+        [request setHTTPMethod:@"DELETE"];
+        NSURLResponse *response = nil;
+        NSError *error = nil;
+        [NSURLConnection sendSynchronousRequest:request
+                              returningResponse:&response error:&error];
+        
+        
+    }
+    
+    [self dismissModalViewControllerAnimated:YES];    
+    [self.navigationController popViewControllerAnimated:NO];
 }
 
 - (NSError *)prepareSendItems
@@ -434,6 +483,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [self becomeFirstResponder];
     [super viewDidAppear:animated];
 }
 
@@ -557,6 +607,40 @@
      // Pass the selected object to the new view controller.
 //     [self.navigationController pushViewController:detailViewController animated:YES];
 //     [detailViewController release];
+}
+
+#pragma mark - UIResponder
+
+- (BOOL)canBecomeFirstResponder {
+    return YES;
+}
+
+- (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{
+}
+
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{
+    //Get the filename of the sound file:
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"cash" ofType:@"wav"];
+
+	//declare a system sound id
+	SystemSoundID soundID;
+    
+	//Get a URL for the sound file
+	NSURL *filePath = [NSURL fileURLWithPath:path isDirectory:NO];
+    
+	//Use audio sevices to create the sound
+	AudioServicesCreateSystemSoundID((CFURLRef)filePath, &soundID);
+    
+	//Use audio services to play the sound
+	AudioServicesPlaySystemSound(soundID);
+    
+    [self checkout];
+}
+
+- (void)motionCancelled:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{
 }
 
 @end

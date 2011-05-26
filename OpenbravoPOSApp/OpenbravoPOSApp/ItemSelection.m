@@ -18,5 +18,7 @@
 {
     [product release];
     [selectedOption release];
+    
+    [super dealloc];
 }
 @end

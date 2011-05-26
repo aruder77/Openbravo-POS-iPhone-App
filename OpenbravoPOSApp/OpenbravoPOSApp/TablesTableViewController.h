@@ -9,22 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "TableItemsTableViewController.h"
 #import "ProductSelectionTableViewController.h"
+#import "TableSelectionViewController.h"
 
 
-@interface TablesTableViewController : UITableViewController {
-    
-    NSMutableData *responseData;
-    
-    NSMutableArray *tableArray;
-    NSMutableArray *busyTables;
+@interface TablesTableViewController : TableSelectionViewController {
     
     TableItemsTableViewController *tableItemsViewController;
     ProductSelectionTableViewController *productSelectViewController;
     
-    UIImage *busyImage;
-    UIImage *emptyImage;
 }
-
--(BOOL) isTableBusy:(Table *)table;
 
 @end

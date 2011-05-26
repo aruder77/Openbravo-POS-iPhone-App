@@ -19,6 +19,8 @@
 {
     [name release];
     [ticketLines release];
+    
+    [super dealloc];
 }
 
 @end

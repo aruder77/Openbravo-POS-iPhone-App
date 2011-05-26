@@ -51,6 +51,8 @@
 		77E3ECD3136C741400FF7A5E /* ItemSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E3ECD2136C741400FF7A5E /* ItemSelection.m */; };
 		77F2E72513638A5200102469 /* AngerhofLogo_iOS.png in Resources */ = {isa = PBXBuildFile; fileRef = 77F2E72413638A5100102469 /* AngerhofLogo_iOS.png */; };
 		77F44191138ED7B000C526B8 /* TableSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F44190138ED7B000C526B8 /* TableSelectionViewController.m */; };
+		77F44194138F05FD00C526B8 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77F44193138F05FD00C526B8 /* AudioToolbox.framework */; };
+		77F44196138F077000C526B8 /* cash.wav in Resources */ = {isa = PBXBuildFile; fileRef = 77F44195138F077000C526B8 /* cash.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -128,6 +130,8 @@
 		77F2E72413638A5100102469 /* AngerhofLogo_iOS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AngerhofLogo_iOS.png; sourceTree = "<group>"; };
 		77F4418F138ED7B000C526B8 /* TableSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableSelectionViewController.h; sourceTree = "<group>"; };
 		77F44190138ED7B000C526B8 /* TableSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableSelectionViewController.m; sourceTree = "<group>"; };
+		77F44193138F05FD00C526B8 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		77F44195138F077000C526B8 /* cash.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = cash.wav; path = OpenbravoPOSApp/cash.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +139,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77F44194138F05FD00C526B8 /* AudioToolbox.framework in Frameworks */,
 				7722B6601341382E001DA854 /* UIKit.framework in Frameworks */,
 				7722B6621341382E001DA854 /* Foundation.framework in Frameworks */,
 				7722B6641341382E001DA854 /* CoreGraphics.framework in Frameworks */,
@@ -147,6 +152,7 @@
 		7722B6501341382E001DA854 = {
 			isa = PBXGroup;
 			children = (
+				77F44195138F077000C526B8 /* cash.wav */,
 				7791557013646B1D008E3474 /* empty.png */,
 				77F2E72413638A5100102469 /* AngerhofLogo_iOS.png */,
 				7791556D1364664E008E3474 /* edit_group.png */,
@@ -167,6 +173,7 @@
 		7722B65E1341382E001DA854 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				77F44193138F05FD00C526B8 /* AudioToolbox.framework */,
 				7722B65F1341382E001DA854 /* UIKit.framework */,
 				7722B6611341382E001DA854 /* Foundation.framework */,
 				7722B6631341382E001DA854 /* CoreGraphics.framework */,
@@ -330,6 +337,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77F44196138F077000C526B8 /* cash.wav in Resources */,
 				7722B66A1341382E001DA854 /* InfoPlist.strings in Resources */,
 				7722B6731341382F001DA854 /* MainWindow.xib in Resources */,
 				7722B6A51347CC01001DA854 /* TablesViewController.xib in Resources */,

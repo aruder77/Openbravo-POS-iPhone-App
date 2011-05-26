@@ -19,5 +19,7 @@
 - (void) dealloc 
 {
     [product release];
+    
+    [super dealloc];
 }
 @end
