@@ -617,13 +617,9 @@
 
 - (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event
 {
-}
-
-- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
-{
     //Get the filename of the sound file:
     NSString *path = [[NSBundle mainBundle] pathForResource:@"cash" ofType:@"wav"];
-
+    
 	//declare a system sound id
 	SystemSoundID soundID;
     
@@ -637,6 +633,10 @@
 	AudioServicesPlaySystemSound(soundID);
     
     [self checkout];
+}
+
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{
 }
 
 - (void)motionCancelled:(UIEventSubtype)motion withEvent:(UIEvent *)event
