@@ -36,6 +36,9 @@
 		7771CE99134CA22C00A36621 /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = 7771CE8F134CA22C00A36621 /* SBJsonTokeniser.m */; };
 		7771CE9A134CA22C00A36621 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7771CE91134CA22C00A36621 /* SBJsonWriter.m */; };
 		7771CE9E134CB65500A36621 /* Table.m in Sources */ = {isa = PBXBuildFile; fileRef = 7771CE9D134CB65500A36621 /* Table.m */; };
+		777394B713915124006F8DA0 /* icon_dollar.png in Resources */ = {isa = PBXBuildFile; fileRef = 777394B513915124006F8DA0 /* icon_dollar.png */; };
+		777394B813915124006F8DA0 /* icon_mail.png in Resources */ = {isa = PBXBuildFile; fileRef = 777394B613915124006F8DA0 /* icon_mail.png */; };
+		777394BB13915FA9006F8DA0 /* icon_shopping_heavy.png in Resources */ = {isa = PBXBuildFile; fileRef = 777394BA13915FA9006F8DA0 /* icon_shopping_heavy.png */; };
 		778268981349221200BC6625 /* TableItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 778268971349221200BC6625 /* TableItemTableViewCell.xib */; };
 		7791556E1364664E008E3474 /* edit_group.png in Resources */ = {isa = PBXBuildFile; fileRef = 7791556D1364664E008E3474 /* edit_group.png */; };
 		7791557113646B1D008E3474 /* empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 7791557013646B1D008E3474 /* empty.png */; };
@@ -105,6 +108,9 @@
 		7771CE91134CA22C00A36621 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		7771CE9C134CB65500A36621 /* Table.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Table.h; sourceTree = "<group>"; };
 		7771CE9D134CB65500A36621 /* Table.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Table.m; sourceTree = "<group>"; };
+		777394B513915124006F8DA0 /* icon_dollar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_dollar.png; path = OpenbravoPOSApp/icon_dollar.png; sourceTree = "<group>"; };
+		777394B613915124006F8DA0 /* icon_mail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_mail.png; path = OpenbravoPOSApp/icon_mail.png; sourceTree = "<group>"; };
+		777394BA13915FA9006F8DA0 /* icon_shopping_heavy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_shopping_heavy.png; path = OpenbravoPOSApp/icon_shopping_heavy.png; sourceTree = "<group>"; };
 		778268971349221200BC6625 /* TableItemTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableItemTableViewCell.xib; sourceTree = "<group>"; };
 		7791556D1364664E008E3474 /* edit_group.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = edit_group.png; path = OpenbravoPOSApp/edit_group.png; sourceTree = "<group>"; };
 		7791557013646B1D008E3474 /* empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = empty.png; path = OpenbravoPOSApp/empty.png; sourceTree = "<group>"; };
@@ -152,6 +158,9 @@
 		7722B6501341382E001DA854 = {
 			isa = PBXGroup;
 			children = (
+				777394BA13915FA9006F8DA0 /* icon_shopping_heavy.png */,
+				777394B513915124006F8DA0 /* icon_dollar.png */,
+				777394B613915124006F8DA0 /* icon_mail.png */,
 				77F44195138F077000C526B8 /* cash.wav */,
 				7791557013646B1D008E3474 /* empty.png */,
 				77F2E72413638A5100102469 /* AngerhofLogo_iOS.png */,
@@ -352,6 +361,9 @@
 				7791556E1364664E008E3474 /* edit_group.png in Resources */,
 				7791557113646B1D008E3474 /* empty.png in Resources */,
 				77AFF0C91379D7F3001C0EBE /* README.md in Resources */,
+				777394B713915124006F8DA0 /* icon_dollar.png in Resources */,
+				777394B813915124006F8DA0 /* icon_mail.png in Resources */,
+				777394BB13915FA9006F8DA0 /* icon_shopping_heavy.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

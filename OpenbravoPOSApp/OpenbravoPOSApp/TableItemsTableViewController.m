@@ -39,25 +39,41 @@
 {
     self = [super initWithNibName:@"TableItemsViewController" bundle:nil];
     if (self) {
-//        self.navigationItem.rightBarButtonItem = self.editButtonItem;
-        
         UIBarButtonItem *addButtonItem = [[UIBarButtonItem alloc]
                                                     initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                     target:self action:@selector(addItems)];
         UIBarButtonItem *flexibleSpaceButtonItem = [[UIBarButtonItem alloc]
                                                    initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                    target:nil action:nil];
-        UIBarButtonItem *sendItemsButtonItem = [[UIBarButtonItem alloc]
-                                               initWithBarButtonSystemItem:UIBarButtonSystemItemAction
-                                               target:self action:@selector(sendItems)];
-        UIBarButtonItem *checkoutButtonItem = [[UIBarButtonItem alloc]
-                                          initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize
-                                          target:self action:@selector(checkout)];
-        UIBarButtonItem *moveTableButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward target:self action:@selector(moveTable)];
         
-        self.toolbarItems = [NSArray arrayWithObjects:checkoutButtonItem, flexibleSpaceButtonItem, sendItemsButtonItem, flexibleSpaceButtonItem, moveTableButtonItem, flexibleSpaceButtonItem, addButtonItem, nil];
+        
+        UIImage *mailImage = [UIImage imageNamed:@"icon_mail.png"];
+        UIButton *mailButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        mailButton.bounds = CGRectMake( 0, 0, mailImage.size.width, mailImage.size.height );    
+        [mailButton setImage:mailImage forState:UIControlStateNormal];
+        [mailButton addTarget:self action:@selector(sendItems) forControlEvents:UIControlEventTouchUpInside];    
+        UIBarButtonItem *sendItemsButtonItem = [[UIBarButtonItem alloc] initWithCustomView:mailButton];
+        
+        UIImage *checkoutImage = [UIImage imageNamed:@"icon_dollar.png"];
+        UIButton *checkoutButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        checkoutButton.bounds = CGRectMake( 0, 0, checkoutImage.size.width, checkoutImage.size.height );    
+        [checkoutButton setImage:checkoutImage forState:UIControlStateNormal];
+        [checkoutButton addTarget:self action:@selector(checkout) forControlEvents:UIControlEventTouchUpInside];    
+        UIBarButtonItem *checkoutButtonItem = [[UIBarButtonItem alloc] initWithCustomView:checkoutButton];
+        
+        self.toolbarItems = [NSArray arrayWithObjects:checkoutButtonItem, flexibleSpaceButtonItem, sendItemsButtonItem, flexibleSpaceButtonItem, addButtonItem, nil];
         
         addedItems = [[NSMutableArray alloc] init];
+        
+        UIImage *moveImage = [UIImage imageNamed:@"icon_shopping_heavy.png"];
+        UIButton *moveButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        moveButton.bounds = CGRectMake( 0, 0, moveImage.size.width, moveImage.size.height );    
+        [moveButton setImage:moveImage forState:UIControlStateNormal];
+        [moveButton addTarget:self action:@selector(moveTable) forControlEvents:UIControlEventTouchUpInside];    
+        UIBarButtonItem *moveTableButtonItem = [[UIBarButtonItem alloc] initWithCustomView:moveButton];
+
+        self.navigationItem.rightBarButtonItem = moveTableButtonItem;
+        
         
         [self.tableView beginUpdates];
         [self.tableView setEditing:YES];
@@ -105,6 +121,7 @@
 - (void) cancelTableSelection 
 {
     [self dismissModalViewControllerAnimated:YES];
+    NSLog(@"cancelTableSelection");
 }
 
 - (void) saveTableSelection
@@ -261,6 +278,7 @@
     itemSelectViewController.newItems = nil;
     if (checkoutViewController != nil) {
         [checkoutViewController release];
+        checkoutViewController = nil;
     }
     
     [self dismissModalViewControllerAnimated:YES];
@@ -478,7 +496,6 @@
     [super viewWillAppear:animated];
     [self updateTicket];
     [self.tableView reloadData];
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -512,7 +529,8 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [ticket.ticketLines count];
+    int c = [ticket.ticketLines count];
+    return c;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
