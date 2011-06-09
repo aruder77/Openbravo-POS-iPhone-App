@@ -165,7 +165,7 @@
         for (int i = 0; i < [localProduct.options count]; i++) {
             [actionSheet addButtonWithTitle:[localProduct.options objectAtIndex:i]];
         }
-        [actionSheet showInView:self.view];
+        [actionSheet showInView:self.navigationController.view];
         [actionSheet release];
     }
 }
