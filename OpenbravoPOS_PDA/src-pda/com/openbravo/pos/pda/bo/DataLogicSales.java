@@ -117,6 +117,7 @@ public class DataLogicSales  {
                     , SerializerWriteBuilder.INSTANCE);
 
                 for (TicketLineInfo l : ticket.getLines()) {
+                    System.out.println("Inserting ticketline [TicketId: " + l.getM_sTicket() + ", LineId: " + l.getM_iLine() + "]");
                     ticketlineinsert.exec(l);
                     if (l.getProductid() != null)  {
                         // update the stock

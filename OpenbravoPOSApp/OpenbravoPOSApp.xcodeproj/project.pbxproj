@@ -39,6 +39,7 @@
 		777394B713915124006F8DA0 /* icon_dollar.png in Resources */ = {isa = PBXBuildFile; fileRef = 777394B513915124006F8DA0 /* icon_dollar.png */; };
 		777394B813915124006F8DA0 /* icon_mail.png in Resources */ = {isa = PBXBuildFile; fileRef = 777394B613915124006F8DA0 /* icon_mail.png */; };
 		777394BB13915FA9006F8DA0 /* icon_shopping_heavy.png in Resources */ = {isa = PBXBuildFile; fileRef = 777394BA13915FA9006F8DA0 /* icon_shopping_heavy.png */; };
+		777394BD13941D65006F8DA0 /* ProductItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 777394BC13941D65006F8DA0 /* ProductItemCell.xib */; };
 		778268981349221200BC6625 /* TableItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 778268971349221200BC6625 /* TableItemTableViewCell.xib */; };
 		7791556E1364664E008E3474 /* edit_group.png in Resources */ = {isa = PBXBuildFile; fileRef = 7791556D1364664E008E3474 /* edit_group.png */; };
 		7791557113646B1D008E3474 /* empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 7791557013646B1D008E3474 /* empty.png */; };
@@ -111,6 +112,7 @@
 		777394B513915124006F8DA0 /* icon_dollar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_dollar.png; path = OpenbravoPOSApp/icon_dollar.png; sourceTree = "<group>"; };
 		777394B613915124006F8DA0 /* icon_mail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_mail.png; path = OpenbravoPOSApp/icon_mail.png; sourceTree = "<group>"; };
 		777394BA13915FA9006F8DA0 /* icon_shopping_heavy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_shopping_heavy.png; path = OpenbravoPOSApp/icon_shopping_heavy.png; sourceTree = "<group>"; };
+		777394BC13941D65006F8DA0 /* ProductItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductItemCell.xib; sourceTree = "<group>"; };
 		778268971349221200BC6625 /* TableItemTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableItemTableViewCell.xib; sourceTree = "<group>"; };
 		7791556D1364664E008E3474 /* edit_group.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = edit_group.png; path = OpenbravoPOSApp/edit_group.png; sourceTree = "<group>"; };
 		7791557013646B1D008E3474 /* empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = empty.png; path = OpenbravoPOSApp/empty.png; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 				7771CE7C134B9E9600A36621 /* SwitchTableTableHeader.xib */,
 				77F4418F138ED7B000C526B8 /* TableSelectionViewController.h */,
 				77F44190138ED7B000C526B8 /* TableSelectionViewController.m */,
+				777394BC13941D65006F8DA0 /* ProductItemCell.xib */,
 			);
 			path = OpenbravoPOSApp;
 			sourceTree = "<group>";
@@ -364,6 +367,7 @@
 				777394B713915124006F8DA0 /* icon_dollar.png in Resources */,
 				777394B813915124006F8DA0 /* icon_mail.png in Resources */,
 				777394BB13915FA9006F8DA0 /* icon_shopping_heavy.png in Resources */,
+				777394BD13941D65006F8DA0 /* ProductItemCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
