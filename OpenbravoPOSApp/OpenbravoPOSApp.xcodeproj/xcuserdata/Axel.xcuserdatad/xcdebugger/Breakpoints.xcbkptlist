@@ -2,4 +2,23 @@
 <Bucket
    type = "1"
    version = "1.0">
+<<<<<<< HEAD
+=======
+   <FileBreakpoints>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "OpenbravoPOSApp/TableItemsTableViewController.m"
+         timestampString = "328140333.350683"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "175"
+         endingLineNumber = "175"
+         landmarkName = "-alertView:clickedButtonAtIndex:"
+         landmarkType = "5">
+      </FileBreakpoint>
+   </FileBreakpoints>
+>>>>>>> 3aacf541daa700e162120fcb93bcfd4408e6d3e2
 </Bucket>
