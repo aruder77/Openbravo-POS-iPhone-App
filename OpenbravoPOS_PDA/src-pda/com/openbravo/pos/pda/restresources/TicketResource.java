@@ -244,6 +244,7 @@ public class TicketResource {
 	public void closeTicket(@QueryParam("place") String place) {
 		System.out.println("TicketId: " + place);
 		TicketInfo ticket = manager.findTicket(place);
+		System.out.println("TicketId (Id): " + ticket.getId());
 		CheckoutHelper helper = new CheckoutHelper();
 		try {
 			helper.checkout(ticket, place);
