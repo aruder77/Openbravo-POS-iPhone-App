@@ -17,6 +17,8 @@
 @synthesize productsById;
 @synthesize productsByCategory;
 
+@synthesize netActivityReqs;
+
 @synthesize window=_window;
 
 @synthesize navigationController=_navigationController;
@@ -32,7 +34,9 @@ static OpenbravoPOSAppAppDelegate *instance;
     NSURLResponse *response;
     NSError *error = nil;
     
+    [self requestNetworkActivityIndicator];
     NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];    
+    [self releaseNetworkActivityIndicator];
     
     if (error != nil && [error code]) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error loading categories!" message:@"Could not retrieve product categories from server!" delegate:self cancelButtonTitle:@"Abbrechen" otherButtonTitles:@"Wiederholen", nil];
@@ -68,7 +72,9 @@ static OpenbravoPOSAppAppDelegate *instance;
     
     NSString *productUrl = [NSString stringWithFormat:@"%@/products", baseUrl];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:productUrl]];
+    [self requestNetworkActivityIndicator];
     NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    [self releaseNetworkActivityIndicator];
     
     if (error != nil && [error code]) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error loading products!" message:@"Could not retrieve products from server!" delegate:self cancelButtonTitle:@"Abbrechen" otherButtonTitles:@"Wiederholen", nil];
@@ -159,6 +165,8 @@ static OpenbravoPOSAppAppDelegate *instance;
 {
     instance = self;
     
+    netActivityReqs = 0;
+    
     [self loadCategories];
 
     [self loadProducts];
@@ -222,7 +230,7 @@ static OpenbravoPOSAppAppDelegate *instance;
 
 
 +(NSString *) getWebAppURL {
-    return @"http://192.168.1.100:8080/pda/resources";
+    return @"http://192.168.2.100:8080/pda/resources";
 }
     
 +(OpenbravoPOSAppAppDelegate *) getInstance {
@@ -243,6 +251,27 @@ static OpenbravoPOSAppAppDelegate *instance;
 -(NSArray *) getProductListForCategoryIndex:(NSInteger)index {
     Category* cat = [[self getCategoryList] objectAtIndex:index];
     return [productsByCategory objectForKey:cat.id];
+}
+
+-(void) requestNetworkActivityIndicator {
+	UIApplication* app = [UIApplication sharedApplication];
+	app.networkActivityIndicatorVisible = YES;
+    
+	self.netActivityReqs++;
+}
+
+-(void) releaseNetworkActivityIndicator {
+    
+	self.netActivityReqs--;
+	if(self.netActivityReqs <= 0)
+	{
+		UIApplication* app = [UIApplication sharedApplication];
+		app.networkActivityIndicatorVisible = NO;
+	}
+    
+	//failsafe
+	if(self.netActivityReqs < 0)
+		self.netActivityReqs = 0;
 }
 
 @end

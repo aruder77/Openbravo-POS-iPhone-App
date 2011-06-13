@@ -15,6 +15,8 @@
     NSDictionary* productsById;
     NSDictionary* productsByCategory;
     
+    int netActivityReqs;
+    
 }
 
 // maps category-ids to categories
@@ -31,6 +33,8 @@
 
 @property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
 
+@property (nonatomic, assign) int netActivityReqs;
+
 // the base web application URL
 +(NSString *) getWebAppURL;
 
@@ -40,4 +44,9 @@
 -(NSArray *) getCategoryList;
 
 -(NSArray *) getProductListForCategoryIndex:(NSInteger)index;
+
+-(void) requestNetworkActivityIndicator;
+
+-(void) releaseNetworkActivityIndicator;
+
 @end

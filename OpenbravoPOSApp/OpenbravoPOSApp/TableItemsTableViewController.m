@@ -100,6 +100,7 @@
     [addedItems release];
     [itemSelectViewController release];
     [checkoutViewController release];
+    [tableSelectionViewController release];
     [sumLabel release];
     [super dealloc];
 }
@@ -139,9 +140,10 @@
         [request setHTTPMethod:@"DELETE"];
         NSURLResponse *response = nil;
         NSError *error = nil;
+        [[OpenbravoPOSAppAppDelegate getInstance] requestNetworkActivityIndicator];
         [NSURLConnection sendSynchronousRequest:request
                               returningResponse:&response error:&error];
-        
+        [[OpenbravoPOSAppAppDelegate getInstance] releaseNetworkActivityIndicator];
         
     }
     
@@ -180,8 +182,10 @@
     
     NSURLResponse *response;
     NSError *error = nil;
+    [[OpenbravoPOSAppAppDelegate getInstance] requestNetworkActivityIndicator];
 	[NSURLConnection sendSynchronousRequest:request
                           returningResponse:&response error:&error];
+    [[OpenbravoPOSAppAppDelegate getInstance] releaseNetworkActivityIndicator];
 
     return error;
 }
@@ -222,10 +226,8 @@
         UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Error!" message:@"Die Bestellung konnte nicht versendet werden!" delegate:self cancelButtonTitle:@"Abbrechen" otherButtonTitles:@"Wiederholen", nil] autorelease];
         [alert show];
     } else {
-        UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Erfolgreich" message:@"Die Bestellung wurde erfolgreich versandt!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-        [alert show];
-        
         [addedItems removeAllObjects];
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 
@@ -305,8 +307,10 @@
     
     NSURLResponse *response;
     NSError *error = nil;
+    [[OpenbravoPOSAppAppDelegate getInstance] requestNetworkActivityIndicator];
 	[NSURLConnection sendSynchronousRequest:request
                                          returningResponse:&response error:&error];
+    [[OpenbravoPOSAppAppDelegate getInstance] releaseNetworkActivityIndicator];
     
     if (error != nil && [error code]) {
         RIButtonItem *cancelButton = [[RIButtonItem alloc] init];
@@ -356,8 +360,10 @@
         [request setHTTPMethod:@"DELETE"];
         NSURLResponse *response = nil;
         NSError *error = nil;
+        [[OpenbravoPOSAppAppDelegate getInstance] requestNetworkActivityIndicator];
         [NSURLConnection sendSynchronousRequest:request
                               returningResponse:&response error:&error];
+        [[OpenbravoPOSAppAppDelegate getInstance] releaseNetworkActivityIndicator];
 
         [self.navigationController popViewControllerAnimated:NO];
     }
@@ -398,8 +404,10 @@
 	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
     NSURLResponse *response;
     NSError *error = nil;
+    [[OpenbravoPOSAppAppDelegate getInstance] requestNetworkActivityIndicator];
 	NSData *data = [NSURLConnection sendSynchronousRequest:request
                                          returningResponse:&response error:&error];
+    [[OpenbravoPOSAppAppDelegate getInstance] releaseNetworkActivityIndicator];
     if (error != nil && [error code]) {
         RIButtonItem *cancelButton = [[RIButtonItem alloc] init];
         cancelButton.label = @"Abbrechen";
@@ -494,6 +502,7 @@
     self.navigationController.toolbarHidden = NO;
 
     [super viewWillAppear:animated];
+    [addedItems removeAllObjects];
     [self updateTicket];
     [self.tableView reloadData];
 }
@@ -588,8 +597,10 @@
     
     NSURLResponse *response;
     NSError *error = nil;
+    [[OpenbravoPOSAppAppDelegate getInstance] requestNetworkActivityIndicator];
 	[NSURLConnection sendSynchronousRequest:request
                           returningResponse:&response error:&error];
+    [[OpenbravoPOSAppAppDelegate getInstance] releaseNetworkActivityIndicator];
     
     if (error != nil && [error code]) {
         RIButtonItem *cancelButton = [[RIButtonItem alloc] init];
@@ -635,6 +646,7 @@
 
 - (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event
 {
+    /*
     //Get the filename of the sound file:
     NSString *path = [[NSBundle mainBundle] pathForResource:@"cash" ofType:@"wav"];
     
@@ -651,6 +663,7 @@
 	AudioServicesPlaySystemSound(soundID);
     
     [self checkout];
+     */
 }
 
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event

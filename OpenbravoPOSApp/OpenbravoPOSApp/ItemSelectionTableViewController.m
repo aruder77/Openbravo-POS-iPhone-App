@@ -76,6 +76,10 @@
     [super viewWillAppear:animated];
     
     itemCount = 1;
+    if (lastSelectedProduct != nil) {
+        [lastSelectedProduct release];
+        lastSelectedProduct = nil;
+    }
     self.navigationItem.title = @"Produkte";
 }
 
@@ -155,6 +159,7 @@
         ItemSelection *selection = [[ItemSelection alloc] init];
         selection.product = localProduct;
         lastSelectedProduct = localProduct;
+        [lastSelectedProduct retain];
         [newItems addObject:selection];
         [selection release];
     }

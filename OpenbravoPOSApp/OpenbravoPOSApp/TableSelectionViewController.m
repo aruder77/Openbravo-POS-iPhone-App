@@ -88,8 +88,10 @@
     [request setHTTPMethod:@"GET"];
     NSURLResponse *response;
     NSError *error;
+    [[OpenbravoPOSAppAppDelegate getInstance] requestNetworkActivityIndicator];
     NSData *data = [NSURLConnection sendSynchronousRequest:request
                                          returningResponse:&response error:&error];
+    [[OpenbravoPOSAppAppDelegate getInstance] releaseNetworkActivityIndicator];
     NSString *responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 	NSDictionary *results = [responseString JSONValue];
     [responseString release];

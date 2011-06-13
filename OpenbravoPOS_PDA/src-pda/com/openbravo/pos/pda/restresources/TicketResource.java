@@ -159,6 +159,10 @@ public class TicketResource {
 		for (TicketLineInfo line : linesToRemove) {
 			ticket.getLines().remove(line);
 		}
+                int i = 0;
+                for (TicketLineInfo line : ticket.getLines()) {
+                    line.setM_iLine(i++);
+                }
 		TicketDAO dao = new TicketDAO();
 		dao.updateTicket(ticketAdd.getTicketId(), ticket);
 	}

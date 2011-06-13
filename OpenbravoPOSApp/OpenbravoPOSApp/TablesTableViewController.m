@@ -108,8 +108,10 @@
         [request setHTTPMethod:@"DELETE"];
         NSURLResponse *response;
         NSError *error;
+        [[OpenbravoPOSAppAppDelegate getInstance] requestNetworkActivityIndicator];
         [NSURLConnection sendSynchronousRequest:request
                               returningResponse:&response error:&error];        
+        [[OpenbravoPOSAppAppDelegate getInstance] releaseNetworkActivityIndicator];
     }    
     [super viewWillAppear:animated];
 }
