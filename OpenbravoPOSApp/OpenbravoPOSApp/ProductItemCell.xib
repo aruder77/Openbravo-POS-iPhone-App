@@ -12,7 +12,6 @@
 		</object>
 		<object class="NSArray" key="IBDocument.IntegratedClassDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<string>IBUIBarButtonItem</string>
 			<string>IBUITableViewCell</string>
 			<string>IBUISegmentedControl</string>
 			<string>IBUILabel</string>
@@ -54,7 +53,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{249, 0}, {71, 44}}</string>
 								<reference key="NSSuperview" ref="277339383"/>
-								<reference key="NSNextKeyView"/>
+								<reference key="NSWindow"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBNumberOfSegments">2</int>
@@ -90,6 +89,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{20, 11}, {101, 21}}</string>
 								<reference key="NSSuperview" ref="277339383"/>
+								<reference key="NSWindow"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
@@ -114,6 +114,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{214, 0}, {27, 43}}</string>
 								<reference key="NSSuperview" ref="277339383"/>
+								<reference key="NSWindow"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
@@ -129,6 +130,7 @@
 						</object>
 						<string key="NSFrameSize">{320, 43}</string>
 						<reference key="NSSuperview" ref="243609991"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="994162499"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
@@ -143,6 +145,7 @@
 				</object>
 				<string key="NSFrameSize">{320, 43}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="277339383"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
@@ -151,45 +154,6 @@
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<int key="IBUISeparatorStyle">1</int>
 				<reference key="IBUIContentView" ref="277339383"/>
-			</object>
-			<object class="IBUIBarButtonItem" id="439044460">
-				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-				<int key="IBUISystemItemIdentifier">5</int>
-			</object>
-			<object class="IBUISegmentedControl" id="427866313">
-				<reference key="NSNextResponder"/>
-				<int key="NSvFlags">292</int>
-				<string key="NSFrameSize">{82, 44}</string>
-				<reference key="NSSuperview"/>
-				<bool key="IBUIOpaque">NO</bool>
-				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-				<int key="IBNumberOfSegments">2</int>
-				<int key="IBSelectedSegmentIndex">0</int>
-				<object class="NSArray" key="IBSegmentTitles">
-					<bool key="EncodedWithXMLCoder">YES</bool>
-					<string>First</string>
-					<string>Second</string>
-				</object>
-				<object class="NSMutableArray" key="IBSegmentWidths">
-					<bool key="EncodedWithXMLCoder">YES</bool>
-					<real value="0.0"/>
-					<real value="0.0"/>
-				</object>
-				<object class="NSMutableArray" key="IBSegmentEnabledStates">
-					<bool key="EncodedWithXMLCoder">YES</bool>
-					<boolean value="YES"/>
-					<boolean value="YES"/>
-				</object>
-				<object class="NSMutableArray" key="IBSegmentContentOffsets">
-					<bool key="EncodedWithXMLCoder">YES</bool>
-					<string>{0, 0}</string>
-					<string>{0, 0}</string>
-				</object>
-				<object class="NSMutableArray" key="IBSegmentImages">
-					<bool key="EncodedWithXMLCoder">YES</bool>
-					<reference ref="4"/>
-					<reference ref="4"/>
-				</object>
 			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -228,11 +192,6 @@
 						<reference key="parent" ref="0"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">3</int>
-						<reference key="object" ref="427866313"/>
-						<reference key="parent" ref="0"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">4</int>
 						<reference key="object" ref="994162499"/>
 						<reference key="parent" ref="243609991"/>
@@ -247,12 +206,6 @@
 						<reference key="object" ref="263209982"/>
 						<reference key="parent" ref="243609991"/>
 					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">7</int>
-						<reference key="object" ref="439044460"/>
-						<reference key="parent" ref="0"/>
-						<string key="objectName">Bar Button Item - Flexible Space</string>
-					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -261,21 +214,17 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>-2.CustomClassName</string>
 					<string>2.IBPluginDependency</string>
-					<string>3.IBPluginDependency</string>
 					<string>4.IBPluginDependency</string>
 					<string>4.IUISegmentedControlInspectorSelectedSegmentMetadataKey</string>
 					<string>5.IBPluginDependency</string>
 					<string>6.IBPluginDependency</string>
-					<string>7.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>UIResponder</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<integer value="1"/>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>

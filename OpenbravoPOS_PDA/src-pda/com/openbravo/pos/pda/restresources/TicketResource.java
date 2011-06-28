@@ -171,11 +171,18 @@ public class TicketResource {
 	@Path("sendTicketProducts")
 	@Consumes("application/json")
 	public void sendTicketProducts(TicketAddition ticketAdd) {
+                System.out.println("Adding to ticket [" + ticketAdd.getTicketId() + "]");
 		List<String> newProducts = ticketAdd.getProductIds();
 		TicketInfo ticket = manager.findTicket(ticketAdd.getTicketId());
 		Set<String> printers = new HashSet<String>();
+                for (String productId: ticketAdd.getProductIds()) {
+                    System.out.println("Adding product: " + productId);
+                }
+
 		for (TicketLineInfo ticketInfo : ticket.getLines()) {
+                    System.out.println("Existing item: " + ticketInfo.getProductid());
 			if (newProducts.contains(ticketInfo.getProductid())) {
+                                System.out.println("Match.");
 				ticketInfo.getAttributes().setProperty("sendStatus", "No");
 				newProducts.remove(ticketInfo.getProductid());
 
@@ -196,9 +203,11 @@ public class TicketResource {
 						+ (option == null ? "isNull" : "notNull") + "]: "
 						+ option);
 				if (printerName != null && !printerName.equals("")) {
+                                        System.out.println("Adding printer: " + printerName);
 					printers.add(printerName);
 				}
 			} else {
+                                System.out.println("Products exists.");
 				ticketInfo.getAttributes().setProperty("sendStatus", "Yes");
 			}
 		}
@@ -256,7 +265,8 @@ public class TicketResource {
 	@DELETE
 	@Path("/moveTicket")
 	public void moveTicket(@QueryParam("fromTable") String fromTable, @QueryParam("toTable") String toTable) {
-		TicketInfo fromTicket = manager.findTicket(fromTable);
+            System.out.println("Moving ticket from table " + fromTable + " to table "+ toTable);
+            TicketInfo fromTicket = manager.findTicket(fromTable);
 		TicketInfo toTicket = getTicket(toTable);
 		
 		List<TicketLineInfo> ticketLines = fromTicket.getLines();
@@ -265,8 +275,11 @@ public class TicketResource {
 		}
 		
 		TicketDAO dao = new TicketDAO();
+                System.out.println("Updating target ticket!");
 		dao.updateTicket(toTable, toTicket);
-		
+
+                System.out.println("Deleting source ticket!");
 		manager.deleteTicket(fromTable);
+                System.out.println("Done moving ticket");
 	}
 }
