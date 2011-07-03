@@ -81,6 +81,10 @@
         lastSelectedProduct = nil;
     }
     self.navigationItem.title = @"Produkte";
+    
+    // scroll table to top
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
 }
 
 - (void)viewDidAppear:(BOOL)animated

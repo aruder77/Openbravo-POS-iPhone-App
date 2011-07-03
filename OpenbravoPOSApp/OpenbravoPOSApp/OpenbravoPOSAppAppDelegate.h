@@ -14,6 +14,7 @@
     NSDictionary* categoriesById;
     NSDictionary* productsById;
     NSDictionary* productsByCategory;
+    NSArray* topTenProducts;
     
     int netActivityReqs;
     
@@ -27,6 +28,8 @@
 
 // maps categories to an array of products
 @property(nonatomic, retain) NSDictionary *productsByCategory;
+
+@property(nonatomic, retain) NSArray *topTenProducts;
 
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;

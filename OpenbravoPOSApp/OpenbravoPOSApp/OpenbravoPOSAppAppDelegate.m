@@ -16,6 +16,7 @@
 @synthesize categoriesById;
 @synthesize productsById;
 @synthesize productsByCategory;
+@synthesize topTenProducts;
 
 @synthesize netActivityReqs;
 
@@ -52,12 +53,22 @@ static OpenbravoPOSAppAppDelegate *instance;
             NSDictionary* categoriesDict = [localCategories objectAtIndex:i];
             Category* category = [[Category alloc] init];
             category.id = [categoriesDict objectForKey:@"id"];
-            category.name = [categoriesDict objectForKey:@"name"];
+            category.name = [[categoriesDict objectForKey:@"name"] substringFromIndex:2];
             [categoriesById setValue:category forKey:category.id];
             [category release];
         }
     }
 
+}
+
+-(NSArray *) getTopTenProductList:(NSDictionary *)topTenDictionary {
+    NSArray *keyList = [topTenDictionary allKeys];
+    NSArray *sortedArray = [keyList sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
+    NSMutableArray *productsArray = [[[NSMutableArray alloc] init] autorelease];
+    for (id object in sortedArray) {
+        [productsArray addObject:[topTenDictionary valueForKey:object]];
+    }
+    return productsArray;
 }
 
 - (void) loadProducts
@@ -88,6 +99,9 @@ static OpenbravoPOSAppAppDelegate *instance;
         self.productsByCategory = [NSMutableDictionary dictionary];
         
         NSArray *localProducts = [results objectForKey:@"productInfo"];
+        
+        NSMutableDictionary *topTenProductDict = [[NSMutableDictionary alloc] init];
+        
         for (int i=0; i < [localProducts count]; i++) {
             NSDictionary* productsDict = [localProducts objectAtIndex:i];
             Product* product = [[Product alloc] init];
@@ -121,6 +135,8 @@ static OpenbravoPOSAppAppDelegate *instance;
                         if ([[key substringToIndex:[@"option" length]] isEqualToString:@"option"])
                         {
                             [product.options addObject:value];
+                        } else if ([key isEqualToString:@"topTenPosition"]) {
+                            [topTenProductDict setValue:product forKey:value];
                         } else {
                             [product.attributes setValue:value forKey:key];
                         }
@@ -128,7 +144,7 @@ static OpenbravoPOSAppAppDelegate *instance;
                     [entries release];
                 }
             }
-            
+                        
             [productsById setValue:product forKey:product.id];
             Category* category = [categoriesById objectForKey:product.categoryId];
             NSMutableArray* array = [productsByCategory objectForKey:category.id];
@@ -140,6 +156,8 @@ static OpenbravoPOSAppAppDelegate *instance;
             [array addObject:product];
             [product release];
         }
+        self.topTenProducts = [self getTopTenProductList:topTenProductDict];
+        [topTenProductDict release];
     }
 }
 
@@ -230,7 +248,7 @@ static OpenbravoPOSAppAppDelegate *instance;
 
 
 +(NSString *) getWebAppURL {
-    return @"http://192.168.2.100:8080/pda/resources";
+    return @"http://192.168.178.102:8080/pda/resources";
 }
     
 +(OpenbravoPOSAppAppDelegate *) getInstance {
@@ -245,10 +263,21 @@ static OpenbravoPOSAppAppDelegate *instance;
     NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
     NSArray *sortedArray = [list sortedArrayUsingDescriptors:sortDescriptors];
     [sortDescriptor release];
-    return sortedArray;
+    
+    Category *topTenCategory = [[Category alloc] init];
+    topTenCategory.name = @"Top Ten";
+    NSMutableArray *categories = [NSMutableArray arrayWithCapacity:([sortedArray count] + 1)];
+    [categories addObject:topTenCategory];
+    [topTenCategory release];
+    [categories addObjectsFromArray:sortedArray];
+    
+    return categories;
 }
 
 -(NSArray *) getProductListForCategoryIndex:(NSInteger)index {
+    if (index == 0) {
+        return self.topTenProducts;
+    }
     Category* cat = [[self getCategoryList] objectAtIndex:index];
     return [productsByCategory objectForKey:cat.id];
 }
