@@ -120,7 +120,7 @@ public class ProductDAO extends BaseJdbcDAO {
         List<ProductInfo> vos = null;
         String sqlStr = isPostgre() ? "SELECT * FROM PRODUCTS P, PRODUCTS_CAT PCAT WHERE P.CATEGORY= ? AND P.ID = PCAT.PRODUCT"
                 + " AND P.ISCOM = FALSE ORDER BY PCAT.CATORDER, P.NAME" : "SELECT * FROM PRODUCTS P, PRODUCTS_CAT PCAT WHERE P.CATEGORY= ? AND P.ID = PCAT.PRODUCT"
-                + " AND P.ISCOM = 0 ORDER BY PCAT.CATORDER, P.NAME";
+                + " AND P.ISCOM = 0 ORDER BY PCAT.CATORDER, P.REFERENCE";
 
         try {
             //get connection
