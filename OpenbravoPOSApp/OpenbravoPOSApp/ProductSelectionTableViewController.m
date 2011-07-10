@@ -127,7 +127,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Product *localProduct = [[delegate getProductListForCategoryIndex:indexPath.section] objectAtIndex:indexPath.row];
+    //Product *localProduct = [[delegate getProductListForCategoryIndex:indexPath.section] objectAtIndex:indexPath.row];
     
     if (([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera] == NO)) {
         UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Camera not available!" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK",nil] autorelease];

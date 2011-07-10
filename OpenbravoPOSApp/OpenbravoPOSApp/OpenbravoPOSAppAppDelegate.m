@@ -114,7 +114,7 @@ static OpenbravoPOSAppAppDelegate *instance;
             if (attrDict != nil && [attrDict isKindOfClass:[NSDictionary class]]) {
                 NSEnumerator *keyEnum = [attrDict keyEnumerator];
                 NSString *key;
-                while (key = [keyEnum nextObject]) {
+                while ((key = [keyEnum nextObject])) {
                     NSString *value = [attrDict objectForKey:key];
                     if ([[key substringToIndex:[@"option" length]] isEqualToString:@"option"])
                     {

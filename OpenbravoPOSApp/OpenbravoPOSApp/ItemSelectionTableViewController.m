@@ -84,7 +84,7 @@
     
     // scroll table to top
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-//    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
+    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -170,7 +170,7 @@
     
     
     if ([localProduct.options count] > 0) {
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Optionen" delegate:self cancelButtonTitle:@"Abbrechen" destructiveButtonTitle:nil otherButtonTitles:nil];
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Optionen" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
         for (int i = 0; i < [localProduct.options count]; i++) {
             [actionSheet addButtonWithTitle:[localProduct.options objectAtIndex:i]];
         }
@@ -201,10 +201,8 @@
 
 - (void)actionSheet: (UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex > 0) {
-        ItemSelection *selectedItem = [newItems objectAtIndex:([newItems count] - 1)];
-        selectedItem.selectedOption = [selectedItem.product.options objectAtIndex:(buttonIndex - 1)];
-    }
+    ItemSelection *selectedItem = [newItems objectAtIndex:([newItems count] - 1)];
+    selectedItem.selectedOption = [selectedItem.product.options objectAtIndex:buttonIndex];
 }
 
 @end

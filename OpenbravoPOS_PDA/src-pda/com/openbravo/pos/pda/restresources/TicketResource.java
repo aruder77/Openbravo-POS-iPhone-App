@@ -172,7 +172,10 @@ public class TicketResource {
 		List<String> newProducts = ticketAdd.getProductIds();
 		TicketInfo ticket = manager.findTicket(ticketAdd.getTicketId());
 		Set<String> printers = new HashSet<String>();
-		for (TicketLineInfo ticketInfo : ticket.getLines()) {
+		int size = ticket.getLines().size();
+		int addedSize = ticketAdd.getProductIds().size();
+		for (int i = size - 1; i >= size - addedSize; i--) {
+			TicketLineInfo ticketInfo = ticket.getLines().get(i);
 			if (newProducts.contains(ticketInfo.getProductid())) {
 				ticketInfo.getAttributes().setProperty("sendStatus", "No");
 				newProducts.remove(ticketInfo.getProductid());

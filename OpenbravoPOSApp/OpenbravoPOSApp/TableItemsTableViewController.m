@@ -577,7 +577,10 @@
     NSMutableArray *ticketsArray = [[NSMutableArray alloc] init ];
     TicketLine *line = [ticket.ticketLines objectAtIndex:indexPath.row];
     [ticketsArray addObject:line.product.id];
-    [addedItems removeObject:line.product];
+    int idx = [addedItems indexOfObject:line.product];
+    if (idx >= 0 && idx < [addedItems count]) {
+        [addedItems removeObjectAtIndex:idx];
+    }
     
     [jsonObject setValue:ticketsArray forKey:@"productIds"];
     [jsonObject setValue:table.id forKey:@"ticketId"];
