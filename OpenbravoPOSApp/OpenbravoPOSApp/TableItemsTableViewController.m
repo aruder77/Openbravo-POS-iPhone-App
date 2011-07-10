@@ -502,7 +502,7 @@
     self.navigationController.toolbarHidden = NO;
 
     [super viewWillAppear:animated];
-    [addedItems removeAllObjects];
+    //[addedItems removeAllObjects];
     [self updateTicket];
     [self.tableView reloadData];
 }

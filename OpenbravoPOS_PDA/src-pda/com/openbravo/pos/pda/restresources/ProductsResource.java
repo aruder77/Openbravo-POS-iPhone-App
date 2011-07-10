@@ -10,7 +10,6 @@ import com.openbravo.pos.ticket.CategoryInfo;
 import com.openbravo.pos.ticket.ProductInfo;
 import java.util.ArrayList;
 import java.util.List;
-import javax.ejb.Singleton;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -19,7 +18,6 @@ import javax.ws.rs.Produces;
  *
  * @author axel
  */
-@Singleton
 @Path("/products")
 public class ProductsResource {
 

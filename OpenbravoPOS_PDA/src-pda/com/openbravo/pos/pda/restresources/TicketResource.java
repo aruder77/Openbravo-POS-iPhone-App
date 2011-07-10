@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 
-import javax.ejb.Singleton;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -35,7 +34,6 @@ import com.openbravo.pos.ticket.TicketLineInfo;
  * 
  * @author axel
  */
-@Singleton
 @Path("/tickets")
 public class TicketResource {
 

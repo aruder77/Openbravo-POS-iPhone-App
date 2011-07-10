@@ -9,7 +9,6 @@ import com.openbravo.pos.pda.bo.RestaurantManager;
 import com.openbravo.pos.ticket.CategoryInfo;
 import com.openbravo.pos.ticket.Place;
 import java.util.List;
-import javax.ejb.Singleton;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -18,7 +17,6 @@ import javax.ws.rs.Produces;
  *
  * @author axel
  */
-@Singleton
 @Path("/categories")
 public class CategoriesResource {
 

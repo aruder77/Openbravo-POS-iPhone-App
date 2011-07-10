@@ -102,15 +102,7 @@
         [busyTables removeAllObjects];
     }
     
-    NSArray *localTables;
-    id result = [results objectForKey:@"place"];
-    if ([result isKindOfClass:[NSDictionary class]]) {
-        localTables = [[NSMutableArray alloc] init];
-        [((NSMutableArray *)localTables) addObject:result];
-    } else {
-        localTables = result;
-    }
-    
+    NSArray *localTables = results;
     for (int i=0; i < [localTables count]; i++) {
         NSDictionary* tableDict = [localTables objectAtIndex:i];        
         [busyTables addObject:[tableDict objectForKey:@"id"]];
@@ -175,10 +167,10 @@
 	[responseData release];
     NSLog(@"Response: %@", responseString);
     
-	NSDictionary *results = [responseString JSONValue];
+	NSArray *results = [responseString JSONValue];
     NSLog(@"Count: %d", [results count]);
     
-    NSArray *localTables = [results objectForKey:@"place"];
+    NSArray *localTables = results;
     for (int i=0; i < [localTables count]; i++) {
         NSDictionary* tableDict = [localTables objectAtIndex:i];
         Table *t = [[Table alloc] init];

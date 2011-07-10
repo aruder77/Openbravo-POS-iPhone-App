@@ -44,11 +44,10 @@ static OpenbravoPOSAppAppDelegate *instance;
         [alertView show];
     } else {
         NSString *responseString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-        NSDictionary *results = [responseString JSONValue];
+        NSArray *localCategories = [responseString JSONValue];
         [responseString release];
         
         self.categoriesById = [NSMutableDictionary dictionary];
-        NSArray *localCategories = [results objectForKey:@"categoryInfo"];
         for (int i=0; i < [localCategories count]; i++) {
             NSDictionary* categoriesDict = [localCategories objectAtIndex:i];
             Category* category = [[Category alloc] init];
@@ -92,13 +91,11 @@ static OpenbravoPOSAppAppDelegate *instance;
         [alertView show];
     } else {
         NSString *responseString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-        NSDictionary *results = [responseString JSONValue];
+        NSDictionary *localProducts = [responseString JSONValue];
         [responseString release];
         
         self.productsById = [NSMutableDictionary dictionary];
         self.productsByCategory = [NSMutableDictionary dictionary];
-        
-        NSArray *localProducts = [results objectForKey:@"productInfo"];
         
         NSMutableDictionary *topTenProductDict = [[NSMutableDictionary alloc] init];
         
@@ -112,37 +109,22 @@ static OpenbravoPOSAppAppDelegate *instance;
             NSDictionary *attrDict = [productsDict objectForKey:@"attributes"];
             product.attributes = [[[NSMutableDictionary alloc] init ] autorelease];
             product.options = [[[NSMutableArray alloc] init] autorelease];
+            NSLog(@"Product: %@", product.name);
             
-            if (attrDict != nil) {
-                id entryDict = [attrDict objectForKey:@"entry"];
-                if (entryDict != nil) {
-                    NSArray *entries;
-                    if ([entryDict isKindOfClass:[NSDictionary class]]) {
-                        entries = [[NSMutableArray alloc] init];
-                        [(NSMutableArray *)entries addObject:entryDict];
+            if (attrDict != nil && [attrDict isKindOfClass:[NSDictionary class]]) {
+                NSEnumerator *keyEnum = [attrDict keyEnumerator];
+                NSString *key;
+                while (key = [keyEnum nextObject]) {
+                    NSString *value = [attrDict objectForKey:key];
+                    if ([[key substringToIndex:[@"option" length]] isEqualToString:@"option"])
+                    {
+                        [product.options addObject:value];
+                    } else if ([key isEqualToString:@"topTenPosition"]) {
+                        [topTenProductDict setValue:product forKey:value];
                     } else {
-                        entries = entryDict;
-                        [entries retain];
+                        [product.attributes setValue:value forKey:key];
                     }
-                    for (int i = 0; i < [entries count]; i++) {
-                        NSDictionary *entry = [entries objectAtIndex:i];
-                        NSDictionary *keyEntry = [entry objectForKey:@"key"];
-                        NSString *key = [keyEntry objectForKey:@"$"];
-                        
-                        NSDictionary *valueEntry = [entry objectForKey:@"value"];
-                        NSString *value = [valueEntry objectForKey:@"$"];
-                        
-                        if ([[key substringToIndex:[@"option" length]] isEqualToString:@"option"])
-                        {
-                            [product.options addObject:value];
-                        } else if ([key isEqualToString:@"topTenPosition"]) {
-                            [topTenProductDict setValue:product forKey:value];
-                        } else {
-                            [product.attributes setValue:value forKey:key];
-                        }
-                    }
-                    [entries release];
-                }
+                }                
             }
                         
             [productsById setValue:product forKey:product.id];
@@ -248,7 +230,7 @@ static OpenbravoPOSAppAppDelegate *instance;
 
 
 +(NSString *) getWebAppURL {
-    return @"http://192.168.178.102:8080/pda/resources";
+    return @"http://192.168.2.100:8080/OpenbravoPOS_PDA_Netbeans/resources";
 }
     
 +(OpenbravoPOSAppAppDelegate *) getInstance {
