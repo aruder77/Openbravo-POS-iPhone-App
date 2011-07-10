@@ -16,6 +16,7 @@ build/*
 
 ## java specific
 *.class
+build
 
 ## userdata
 xcuserdata
