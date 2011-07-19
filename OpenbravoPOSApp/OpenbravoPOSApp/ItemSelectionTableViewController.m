@@ -184,7 +184,7 @@
     NSArray* categoriesArray = [delegate getCategoryList];
     for (int i = 0; i < [categoriesArray count]; i++) {
         Category* cat = [categoriesArray objectAtIndex:i];
-        [array addObject:cat.name];
+        [array addObject:[cat.name substringFromIndex:2]];
     }
     return array;
 }
@@ -194,7 +194,7 @@
 }
 
 - (NSString *)tableView:(UITableView *)aTableView titleForHeaderInSection:(NSInteger)section {
-    return [[[delegate getCategoryList] objectAtIndex:section] name];
+    return [[[[delegate getCategoryList] objectAtIndex:section] name] substringFromIndex:2];
 }
 
 #pragma mark - Action sheet delegate

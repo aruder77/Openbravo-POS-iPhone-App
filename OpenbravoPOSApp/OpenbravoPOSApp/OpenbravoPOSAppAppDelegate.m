@@ -52,7 +52,7 @@ static OpenbravoPOSAppAppDelegate *instance;
             NSDictionary* categoriesDict = [localCategories objectAtIndex:i];
             Category* category = [[Category alloc] init];
             category.id = [categoriesDict objectForKey:@"id"];
-            category.name = [[categoriesDict objectForKey:@"name"] substringFromIndex:2];
+            category.name = [categoriesDict objectForKey:@"name"];
             [categoriesById setValue:category forKey:category.id];
             [category release];
         }
@@ -230,7 +230,7 @@ static OpenbravoPOSAppAppDelegate *instance;
 
 
 +(NSString *) getWebAppURL {
-    return @"http://192.168.2.100:8080/OpenbravoPOS_PDA_Netbeans/resources";
+    return @"http://192.168.178.2:8080/pda/resources";
 }
     
 +(OpenbravoPOSAppAppDelegate *) getInstance {
@@ -247,12 +247,11 @@ static OpenbravoPOSAppAppDelegate *instance;
     [sortDescriptor release];
     
     Category *topTenCategory = [[Category alloc] init];
-    topTenCategory.name = @"Top Ten";
+    topTenCategory.name = @"0 Top Ten";
     NSMutableArray *categories = [NSMutableArray arrayWithCapacity:([sortedArray count] + 1)];
     [categories addObject:topTenCategory];
     [topTenCategory release];
     [categories addObjectsFromArray:sortedArray];
-    
     return categories;
 }
 
