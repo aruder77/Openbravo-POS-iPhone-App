@@ -170,7 +170,7 @@
     
     
     if ([localProduct.options count] > 0) {
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Optionen" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Optionen" delegate:self cancelButtonTitle:@"Abbrechen" destructiveButtonTitle:nil otherButtonTitles:nil];
         for (int i = 0; i < [localProduct.options count]; i++) {
             [actionSheet addButtonWithTitle:[localProduct.options objectAtIndex:i]];
         }
@@ -202,7 +202,11 @@
 - (void)actionSheet: (UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     ItemSelection *selectedItem = [newItems objectAtIndex:([newItems count] - 1)];
-    selectedItem.selectedOption = [selectedItem.product.options objectAtIndex:buttonIndex];
+    if (buttonIndex > 0) {
+        selectedItem.selectedOption = [selectedItem.product.options objectAtIndex:(buttonIndex - 1)];
+    } else {
+        [newItems removeLastObject];
+    }
 }
 
 @end
