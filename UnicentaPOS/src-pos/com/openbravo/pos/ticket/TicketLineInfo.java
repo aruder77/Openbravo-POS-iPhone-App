@@ -30,10 +30,13 @@ import com.openbravo.basic.BasicException;
 import com.openbravo.pos.forms.AppLocal;
 import java.util.Properties;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  *
  * @author adrianromero
  */
+@XmlRootElement
 public class TicketLineInfo implements SerializableWrite, SerializableRead, Serializable {
 
     private static final long serialVersionUID = 6608012948284450199L;

@@ -24,11 +24,15 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
 import com.openbravo.data.gui.NullIcon;
 import com.openbravo.data.loader.DataRead;
 import com.openbravo.data.loader.SerializableRead;
 import com.openbravo.basic.BasicException;
 
+@XmlRootElement
 public class Place implements SerializableRead, java.io.Serializable {
     
     private static final long serialVersionUID = 8652254694281L;
@@ -42,6 +46,8 @@ public class Place implements SerializableRead, java.io.Serializable {
     private String m_sfloor;
     
     private boolean m_bPeople;
+    
+    @XmlTransient
     private JButton m_btn;
         
     /** Creates a new instance of TablePlace */
@@ -64,7 +70,7 @@ public class Place implements SerializableRead, java.io.Serializable {
         m_btn.setHorizontalTextPosition(SwingConstants.CENTER);
         m_btn.setVerticalTextPosition(SwingConstants.BOTTOM);            
         m_btn.setIcon(ICO_FRE);
-        m_btn.setText(m_sName);
+        m_btn.setText(m_sName); 
     }
 
     public String getId() { return m_sId; }
@@ -77,7 +83,8 @@ public class Place implements SerializableRead, java.io.Serializable {
 
     public String getFloor() { return m_sfloor; }
    
-    public JButton getButton() { return m_btn; }
+    @XmlTransient
+    public JButton getButton() { return m_btn; } 
 
     public boolean hasPeople() {
         return m_bPeople;

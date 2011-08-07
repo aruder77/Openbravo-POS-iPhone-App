@@ -21,6 +21,10 @@ package com.openbravo.pos.ticket;
 import com.openbravo.basic.BasicException;
 import com.openbravo.data.loader.DataRead;
 import java.awt.image.*;
+
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
 import com.openbravo.data.loader.IKeyed;
 import com.openbravo.data.loader.ImageUtils;
 import com.openbravo.data.loader.SerializerRead;
@@ -30,11 +34,13 @@ import com.openbravo.data.loader.SerializerRead;
  * @author  Adrian
  * @version 
  */
+@XmlRootElement
 public class CategoryInfo implements IKeyed {
 
-    private static final long serialVersionUID = 8612449444103L;
+    public static final long serialVersionUID = 8612449444103L;
     private String m_sID;
     private String m_sName;
+    
     private BufferedImage m_Image;
 
     /** Creates new CategoryInfo */
@@ -64,6 +70,7 @@ public class CategoryInfo implements IKeyed {
         m_sName = sName;
     }
 
+    @XmlTransient
     public BufferedImage getImage() {
         return m_Image;
     }

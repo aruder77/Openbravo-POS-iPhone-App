@@ -27,11 +27,15 @@ import com.openbravo.data.loader.SerializerRead;
 import com.openbravo.format.Formats;
 import java.util.Properties;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
 /**
  *
  * @author adrianromero
  *
  */
+@XmlRootElement
 public class ProductInfoExt {
 
     private static final long serialVersionUID = 7587696873036L;
@@ -166,6 +170,7 @@ public class ProductInfoExt {
         return Formats.CURRENCY.formatValue(new Double(getPriceSellTax(tax)));
     }
     
+    @XmlTransient
     public BufferedImage getImage() {
         return m_Image;
     }
