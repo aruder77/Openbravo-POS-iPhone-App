@@ -27,6 +27,7 @@ import com.openbravo.pos.forms.BeanFactoryObj;
 import com.openbravo.pos.forms.BeanFactoryScript;
 import com.openbravo.pos.forms.DataLogicSystem;
 import com.openbravo.pos.printer.DeviceTicket;
+import com.openbravo.pos.printer.TicketParser;
 import com.openbravo.pos.scale.DeviceScale;
 import com.openbravo.pos.scanpal2.DeviceScanner;
 
@@ -197,7 +198,7 @@ public class AppViewImpl implements AppView {
 			m_dlSystem.setResourceAsProperties(m_props.getHost()
 					+ "/properties", m_propsdb);
 		}
-
+		
 		return true;
 	}
 

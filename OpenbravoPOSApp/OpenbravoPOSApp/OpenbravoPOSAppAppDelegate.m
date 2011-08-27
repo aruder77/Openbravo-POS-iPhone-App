@@ -230,7 +230,7 @@ static OpenbravoPOSAppAppDelegate *instance;
 
 
 +(NSString *) getWebAppURL {
-    return @"http://192.168.178.31:8080/pda/resources";
+    return @"http://192.168.2.100:8080/OpenbravoPOS_PDA/resources";
 }
     
 +(OpenbravoPOSAppAppDelegate *) getInstance {

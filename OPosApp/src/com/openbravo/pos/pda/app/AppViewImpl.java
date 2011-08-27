@@ -29,6 +29,8 @@ import com.openbravo.pos.forms.DataLogicSales;
 import com.openbravo.pos.forms.DataLogicSystem;
 import com.openbravo.pos.pda.datalogic.DataLogicFloors;
 import com.openbravo.pos.printer.DeviceTicket;
+import com.openbravo.pos.printer.TicketParser;
+import com.openbravo.pos.printer.TicketPrinterException;
 import com.openbravo.pos.sales.DataLogicReceipts;
 import com.openbravo.pos.scale.DeviceScale;
 import com.openbravo.pos.scanpal2.DeviceScanner;
@@ -50,6 +52,7 @@ public class AppViewImpl implements AppView {
 	private DeviceScale m_Scale;
 	private DeviceScanner m_Scanner;
 	private DeviceTicket m_TP;
+	private TicketParser m_TTP;
 	
 	private static AppViewImpl instance;
 
@@ -200,9 +203,32 @@ public class AppViewImpl implements AppView {
 			m_dlSystem.setResourceAsProperties(m_props.getHost()
 					+ "/properties", m_propsdb);
 		}
+		
+        // Inicializo la impresora...
+        m_TP = new DeviceTicket(null, m_props);
+        
+        // Inicializamos 
+        m_TTP = new TicketParser(getDeviceTicket(), m_dlSystem);
+        printerStart();
 
 		return true;
 	}
+	
+    private void printerStart() {
+        
+        String sresource = m_dlSystem.getResourceAsXML("Printer.Start");
+        if (sresource == null) {
+            m_TP.getDeviceDisplay().writeVisor(AppLocal.APP_NAME, AppLocal.APP_VERSION);
+        } else {
+            try {
+                m_TTP.printTicket(sresource);
+            } catch (TicketPrinterException eTP) {
+                m_TP.getDeviceDisplay().writeVisor(AppLocal.APP_NAME, AppLocal.APP_VERSION);
+            }
+        }        
+    }
+    
+
 
 	private String readDataBaseVersion() {
 		try {

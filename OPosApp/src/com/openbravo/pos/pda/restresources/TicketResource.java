@@ -20,12 +20,22 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
 import com.openbravo.basic.BasicException;
+import com.openbravo.data.gui.ListKeyed;
+import com.openbravo.data.loader.SentenceList;
 import com.openbravo.pos.forms.DataLogicSales;
+import com.openbravo.pos.forms.DataLogicSystem;
 import com.openbravo.pos.pda.app.AppViewImpl;
+import com.openbravo.pos.pda.datalogic.DataLogicFloors;
+import com.openbravo.pos.printer.DeviceTicket;
+import com.openbravo.pos.printer.TicketParser;
+import com.openbravo.pos.printer.TicketPrinterException;
 import com.openbravo.pos.sales.DataLogicReceipts;
 import com.openbravo.pos.sales.SharedTicketInfo;
 import com.openbravo.pos.sales.TaxesLogic;
 import com.openbravo.pos.sales.restaurant.Place;
+import com.openbravo.pos.scripting.ScriptEngine;
+import com.openbravo.pos.scripting.ScriptException;
+import com.openbravo.pos.scripting.ScriptFactory;
 import com.openbravo.pos.ticket.ProductInfoExt;
 import com.openbravo.pos.ticket.TaxInfo;
 import com.openbravo.pos.ticket.TicketInfo;
@@ -38,13 +48,18 @@ import com.openbravo.pos.ticket.TicketLineInfo;
 @Path("/tickets")
 public class TicketResource {
 
+	DataLogicSystem dlSystem = AppViewImpl.getBean(DataLogicSystem.class);
 	DataLogicSales dls = AppViewImpl.getBean(DataLogicSales.class);
 	DataLogicReceipts dlr = AppViewImpl.getBean(DataLogicReceipts.class);
+	DataLogicFloors dlf = AppViewImpl.getBean(DataLogicFloors.class);
 	TaxesLogic taxesLogic = null;
+	TicketParser ticketParser = null;
 
 	public TicketResource() {
 		try {
 			taxesLogic = new TaxesLogic(dls.getTaxList().list());
+			ticketParser = new TicketParser(AppViewImpl.getInstance()
+					.getDeviceTicket(), dlSystem);
 		} catch (BasicException e) {
 			e.printStackTrace();
 		}
@@ -58,7 +73,6 @@ public class TicketResource {
 		try {
 			tickets = dls.getSharedTicketList();
 		} catch (BasicException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return tickets;
@@ -152,7 +166,7 @@ public class TicketResource {
 				}
 				ticket.addLine(ticketLine);
 			}
-   			dlr.updateSharedTicket(ticketAdd.getTicketId(), ticket);
+			dlr.updateSharedTicket(ticketAdd.getTicketId(), ticket);
 		} catch (BasicException e) {
 			e.printStackTrace();
 		}
@@ -175,11 +189,6 @@ public class TicketResource {
 			for (TicketLineInfo line : linesToRemove) {
 				ticket.getLines().remove(line);
 			}
-			int i = 0;
-			for (TicketLineInfo line : ticket.getLines()) {
-				// TODO: fix this!!
-				// line.setM_iLine(i++);
-			}
 			dlr.updateSharedTicket(ticketAdd.getTicketId(), ticket);
 		} catch (BasicException e) {
 			e.printStackTrace();
@@ -190,77 +199,81 @@ public class TicketResource {
 	@Path("sendTicketProducts")
 	@Consumes("application/json")
 	public void sendTicketProducts(TicketAddition ticketAdd) {
-		List<String> newProducts = ticketAdd.getProductIds();
-		TicketInfo ticket = dlr.getSharedTicket(ticketAdd.getTicketId());
-		Set<String> printers = new HashSet<String>();
-		int size = ticket.getLines().size();
-		int addedSize = ticketAdd.getProductIds().size();
-		for (int i = size - 1; i >= size - addedSize; i--) {
-			TicketLineInfo ticketInfo = ticket.getLines().get(i);
-			if (newProducts.contains(ticketInfo.getProductID())) {
-				ticketInfo.setProperty("sendStatus", "No");
-				newProducts.remove(ticketInfo.getProductID());
+		try {
+			List<String> newProducts = ticketAdd.getProductIds();
+			TicketInfo ticket = dlr.getSharedTicket(ticketAdd.getTicketId());
+			Set<String> printers = new HashSet<String>();
+			int size = ticket.getLines().size();
+			int addedSize = ticketAdd.getProductIds().size();
+			for (int i = size - 1; i >= size - addedSize; i--) {
+				TicketLineInfo ticketInfo = ticket.getLines().get(i);
+				if (newProducts.contains(ticketInfo.getProductID())) {
+					ticketInfo.setProperty("sendStatus", "No");
+					newProducts.remove(ticketInfo.getProductID());
 
-				String printerName = ticketInfo.getProperty(
-						"product.printer");
-				System.out.println("New product: "
-						+ ticketInfo
-								.getProperty("product.name") + " on printer "
-						+ printerName);
-				String detailText = ticketInfo.getProperty(
-						"product.detailText");
-				System.out.println("detailText["
-						+ (detailText == null ? "isNull" : "notNull") + "]: "
-						+ detailText);
-				String option = ticketInfo.getProperty(
-						"product.option");
-				System.out.println("Option["
-						+ (option == null ? "isNull" : "notNull") + "]: "
-						+ option);
-				if (printerName != null && !printerName.equals("")) {
-					printers.add(printerName);
+					String printerName = ticketInfo
+							.getProperty("product.printer");
+					System.out.println("New product: "
+							+ ticketInfo.getProperty("product.name")
+							+ " on printer " + printerName);
+					String detailText = ticketInfo
+							.getProperty("product.detailText");
+					System.out.println("detailText["
+							+ (detailText == null ? "isNull" : "notNull")
+							+ "]: " + detailText);
+					String option = ticketInfo.getProperty("product.option");
+					System.out.println("Option["
+							+ (option == null ? "isNull" : "notNull") + "]: "
+							+ option);
+					if (printerName != null && !printerName.equals("")) {
+						printers.add(printerName);
+					}
+				} else {
+					ticketInfo.setProperty("sendStatus", "Yes");
 				}
-			} else {
-				ticketInfo.setProperty("sendStatus", "Yes");
 			}
-		}
-		Place place = manager.findPlaceById(ticketAdd.getTicketId());
-		TestPrint tp = new TestPrint();
-		for (String printerName : printers) {
-			System.out.println("printing lines for printer " + printerName);
-			tp.PrintPDATicket(place.getName(), ticket, printerName);
+
+			String place = dlSystem.findLocationName(ticketAdd.getTicketId());
+			for (String printerName : printers) {
+				System.out.println("printing lines for printer " + printerName);
+				printPDATicket(place, ticket, printerName);
+			}
+		} catch (BasicException e) {
+			e.printStackTrace();
 		}
 	}
 
-	// @POST
-	// @Path("closeTicketForItems")
-	// @Consumes("application/json")
-	// public void closeTicketForItems(TicketAddition ticketAdd) {
-	// List<String> newProducts = ticketAdd.getProductIds();
-	// TicketInfo ticket = manager.findTicket(ticketAdd.getTicketId());
-	// List<TicketLineInfo> ticketLines = new ArrayList<TicketLineInfo>();
-	// List<TicketLineInfo> remainingTicketLines = new
-	// ArrayList<TicketLineInfo>();
-	// for (TicketLineInfo ticketInfo : ticket.getLines()) {
-	// if (newProducts.contains(ticketInfo.getProductid())) {
-	// newProducts.remove(ticketInfo.getProductid());
-	// ticketLines.add(ticketInfo);
-	// } else {
-	// remainingTicketLines.add(ticketInfo);
-	// }
-	// }
-	// if (ticketLines.size() > 0) {
-	// ticket.setM_aLines(ticketLines);
-	// TicketDAO dao = new TicketDAO();
-	// dao.updateTicket(ticketAdd.getTicketId(), ticket);
-	//
-	// closeTicket(ticketAdd.getTicketId());
-	//
-	// TicketInfo newTicket = getTicket(ticketAdd.getTicketId());
-	// newTicket.setM_aLines(remainingTicketLines);
-	// dao.updateTicket(ticketAdd.getTicketId(), newTicket);
-	// }
-	// }
+	@POST
+	@Path("closeTicketForItems")
+	@Consumes("application/json")
+	public void closeTicketForItems(TicketAddition ticketAdd) {
+		List<String> newProducts = ticketAdd.getProductIds();
+		try {
+			TicketInfo ticket = dlr.getSharedTicket(ticketAdd.getTicketId());
+			List<TicketLineInfo> ticketLines = new ArrayList<TicketLineInfo>();
+			List<TicketLineInfo> remainingTicketLines = new ArrayList<TicketLineInfo>();
+			for (TicketLineInfo ticketInfo : ticket.getLines()) {
+				if (newProducts.contains(ticketInfo.getProductID())) {
+					newProducts.remove(ticketInfo.getProductID());
+					ticketLines.add(ticketInfo);
+				} else {
+					remainingTicketLines.add(ticketInfo);
+				}
+			}
+			if (ticketLines.size() > 0) {
+				ticket.setLines(ticketLines);
+				dlr.updateSharedTicket(ticketAdd.getTicketId(), ticket);
+
+				closeTicket(ticketAdd.getTicketId());
+
+				TicketInfo newTicket = getTicket(ticketAdd.getTicketId());
+				newTicket.setLines(remainingTicketLines);
+				dlr.updateSharedTicket(ticketAdd.getTicketId(), newTicket);
+			}
+		} catch (BasicException ex) {
+			ex.printStackTrace();
+		}
+	}
 
 	@DELETE
 	@Path("/closeTicket")
@@ -298,4 +311,37 @@ public class TicketResource {
 			ex.printStackTrace();
 		}
 	}
+
+	public boolean printPDATicket(String place, TicketInfo ticket,
+			String printerName) {
+		String sresource = dlSystem.getResourceAsXML("Printer." + printerName);
+		SentenceList sentTax = dls.getTaxList();
+		try {
+			ListKeyed<TaxInfo> taxcollection = new ListKeyed<TaxInfo>(
+					sentTax.list());
+			if (sresource != null) {
+				try {
+					ScriptEngine script = ScriptFactory
+							.getScriptEngine(ScriptFactory.VELOCITY);
+					script.put("taxes", taxcollection);
+					script.put("taxeslogic", taxesLogic);
+					script.put("ticket", ticket);
+					script.put("place", place);
+					ticketParser.printTicket(script.eval(sresource).toString());
+				} catch (ScriptException e) {
+					e.printStackTrace();
+					return false;
+				} catch (TicketPrinterException e) {
+					e.printStackTrace();
+					return false;
+				}
+			}
+		} catch (BasicException e) {
+			e.printStackTrace();
+			return false;
+		}
+
+		return true;
+	}
+
 }

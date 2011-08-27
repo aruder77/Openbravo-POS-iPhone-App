@@ -157,10 +157,10 @@ public class TicketResource {
 		for (TicketLineInfo line : linesToRemove) {
 			ticket.getLines().remove(line);
 		}
-                int i = 0;
-                for (TicketLineInfo line : ticket.getLines()) {
-                    line.setM_iLine(i++);
-                }
+		int i = 0;
+		for (TicketLineInfo line : ticket.getLines()) {
+			line.setM_iLine(i++);
+		}
 		TicketDAO dao = new TicketDAO();
 		dao.updateTicket(ticketAdd.getTicketId(), ticket);
 	}
@@ -205,9 +205,18 @@ public class TicketResource {
 		}
 		Place place = manager.findPlaceById(ticketAdd.getTicketId());
 		TestPrint tp = new TestPrint();
+		int i = 0;
 		for (String printerName : printers) {
 			System.out.println("printing lines for printer " + printerName);
 			tp.PrintPDATicket(place.getName(), ticket, printerName);
+			if (i < (printers.size() - 1)) {
+				try {
+					Thread.sleep(500);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+			i++;
 		}
 	}
 
@@ -253,21 +262,22 @@ public class TicketResource {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@DELETE
 	@Path("/moveTicket")
-	public void moveTicket(@QueryParam("fromTable") String fromTable, @QueryParam("toTable") String toTable) {
+	public void moveTicket(@QueryParam("fromTable") String fromTable,
+			@QueryParam("toTable") String toTable) {
 		TicketInfo fromTicket = manager.findTicket(fromTable);
 		TicketInfo toTicket = getTicket(toTable);
-		
+
 		List<TicketLineInfo> ticketLines = fromTicket.getLines();
-		for (TicketLineInfo ticketLine: ticketLines) {
+		for (TicketLineInfo ticketLine : ticketLines) {
 			toTicket.addLine(ticketLine);
 		}
-		
+
 		TicketDAO dao = new TicketDAO();
 		dao.updateTicket(toTable, toTicket);
-		
+
 		manager.deleteTicket(fromTable);
 	}
 }
