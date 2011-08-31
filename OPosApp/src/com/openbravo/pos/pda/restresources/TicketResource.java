@@ -16,6 +16,7 @@ import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
@@ -26,13 +27,11 @@ import com.openbravo.pos.forms.DataLogicSales;
 import com.openbravo.pos.forms.DataLogicSystem;
 import com.openbravo.pos.pda.app.AppViewImpl;
 import com.openbravo.pos.pda.datalogic.DataLogicFloors;
-import com.openbravo.pos.printer.DeviceTicket;
 import com.openbravo.pos.printer.TicketParser;
 import com.openbravo.pos.printer.TicketPrinterException;
 import com.openbravo.pos.sales.DataLogicReceipts;
 import com.openbravo.pos.sales.SharedTicketInfo;
 import com.openbravo.pos.sales.TaxesLogic;
-import com.openbravo.pos.sales.restaurant.Place;
 import com.openbravo.pos.scripting.ScriptEngine;
 import com.openbravo.pos.scripting.ScriptException;
 import com.openbravo.pos.scripting.ScriptFactory;
@@ -66,22 +65,9 @@ public class TicketResource {
 	}
 
 	@GET
+	@Path("/{placeId}")
 	@Produces("application/json")
-	public List<SharedTicketInfo> getTickets() {
-		DataLogicReceipts dls = AppViewImpl.getBean(DataLogicReceipts.class);
-		List<SharedTicketInfo> tickets = null;
-		try {
-			tickets = dls.getSharedTicketList();
-		} catch (BasicException e) {
-			e.printStackTrace();
-		}
-		return tickets;
-	}
-
-	@GET
-	@Path("ticket")
-	@Produces("application/json")
-	public TicketInfo getTicket(@QueryParam("place") String placeId) {
+	public TicketInfo getTicket(@PathParam("placeId") String placeId) {
 		System.out.println("Place-ID: " + placeId);
 		DataLogicReceipts dlr = AppViewImpl.getBean(DataLogicReceipts.class);
 		TicketInfo ticket = null;

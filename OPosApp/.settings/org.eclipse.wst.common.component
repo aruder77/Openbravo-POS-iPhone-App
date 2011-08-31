@@ -3,9 +3,10 @@
     <wb-module deploy-name="OPosApp">
         <wb-resource deploy-path="/" source-path="/WebContent"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/reports"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/locales"/>
         <dependent-module archiveName="Openbravo.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/Openbravo/Openbravo">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="Openbravo POS.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/Openbravo POS/Openbravo POS">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <property name="context-root" value="pda"/>

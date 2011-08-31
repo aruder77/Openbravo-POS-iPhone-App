@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="Openbravo POS">
+        <wb-resource deploy-path="/" source-path="/src-beans"/>
+        <wb-resource deploy-path="/" source-path="/src-data"/>
+        <wb-resource deploy-path="/" source-path="/src-pos"/>
+        <wb-resource deploy-path="/" source-path="/locales"/>
+        <wb-resource deploy-path="/" source-path="/reports"/>
+    </wb-module>
+</project-modules>

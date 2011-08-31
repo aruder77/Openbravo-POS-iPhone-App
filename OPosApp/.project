@@ -3,7 +3,7 @@
 	<name>OPosApp</name>
 	<comment></comment>
 	<projects>
-		<project>Openbravo</project>
+		<project>Openbravo POS</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

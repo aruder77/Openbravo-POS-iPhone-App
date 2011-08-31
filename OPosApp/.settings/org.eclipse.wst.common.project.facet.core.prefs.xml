@@ -1,0 +1,7 @@
+<root>
+  <facet id="jst.jaxrs">
+    <node name="libprov">
+      <attribute name="provider-id" value="com.sun.enterprise.jst.server.sunappsrv.jaxrsLibraryproviderID"/>
+    </node>
+  </facet>
+</root>
