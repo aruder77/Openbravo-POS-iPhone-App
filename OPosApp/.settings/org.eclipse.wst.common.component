@@ -6,9 +6,6 @@
         <dependent-module archiveName="Openbravo.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/Openbravo/Openbravo">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="Openbravo POS.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/Openbravo POS/Openbravo POS">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
         <property name="context-root" value="pda"/>
         <property name="java-output-path" value="/OPosApp/build/classes"/>
     </wb-module>

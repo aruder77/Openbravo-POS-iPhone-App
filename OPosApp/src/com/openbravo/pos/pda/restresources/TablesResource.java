@@ -5,44 +5,34 @@
 package com.openbravo.pos.pda.restresources;
 
 // The Java class will be hosted at the URI path "/myresource"
-import java.util.ArrayList;
 import java.util.List;
 
+import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
-import com.openbravo.pos.pda.app.AppViewImpl;
-import com.openbravo.pos.pda.datalogic.DataLogicFloors;
-import com.openbravo.pos.sales.restaurant.Floor;
+import com.openbravo.pos.pda.bean.TablesBean;
 import com.openbravo.pos.sales.restaurant.Place;
-import com.sun.jersey.spi.resource.Singleton;
 
-@Singleton
+@Stateless
 @Path("/tables")
-@Produces("application/json")
+@Produces(MediaType.APPLICATION_JSON)
 public class TablesResource {
 
+	@Inject
+	TablesBean bean;
+	
     @GET
-    public Place[] getTables() {
-    	DataLogicFloors dlf = new DataLogicFloors();
-    	dlf.init(AppViewImpl.getInstance());
-    	
-    	Floor floor = dlf.getFloors().get(0);
-    	List<Place> places = dlf.getPlaceByFloor(floor.getID());
-		return places.toArray(new Place[places.size()]);
+    public List<Place> getTables() {
+    	return bean.getTables();
     }
     
     @GET
     @Path("/busyTables")
-    public Place[] getBusyTables() {
-    	Place[] places = getTables();
-    	List<Place> busyPlaces = new ArrayList<Place>();
-    	for (Place place : places) {
-    		if (place.hasPeople()) {
-    			busyPlaces.add(place);
-    		}
-    	}
-    	return busyPlaces.toArray(new Place[busyPlaces.size()]);
+    public List<Place> getBusyTables() {
+    	return bean.getBusyTables();
     }
 }

@@ -3,6 +3,7 @@
 	<name>OpenbravoPOS_PDA</name>
 	<comment></comment>
 	<projects>
+		<project>Openbravo</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

@@ -7,34 +7,40 @@ package com.openbravo.pos.pda.restresources;
 
 import java.util.List;
 
+import javax.ejb.Stateless;
+import javax.inject.Inject;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
-import com.openbravo.basic.BasicException;
-import com.openbravo.pos.pda.app.AppViewImpl;
-import com.openbravo.pos.sales.DataLogicReceipts;
+import com.openbravo.pos.pda.bean.TicketsBean;
 import com.openbravo.pos.sales.SharedTicketInfo;
 
 /**
  * 
  * @author axel
  */
+@Stateless
 @Path("/tickets")
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 public class TicketsResource {
 
-	DataLogicReceipts dlr = AppViewImpl.getBean(DataLogicReceipts.class);
-
+	@Inject
+	TicketsBean bean;
+	
 	@GET
-	@Produces("application/json")
 	public List<SharedTicketInfo> getTickets() {
-		List<SharedTicketInfo> tickets = null;
-		try {
-			tickets = dlr.getSharedTicketList();
-		} catch (BasicException e) {
-			e.printStackTrace();
-		}
-		return tickets;
+		return bean.getTickets();
 	}
+	
+	@Path("/{placeId}")
+	public TicketResource getTicket(@PathParam("placeId") String placeId) {
+		return new TicketResource(bean, placeId);
+	}
+
 
 }

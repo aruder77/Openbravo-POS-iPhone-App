@@ -1,6 +1,8 @@
 ----------------------------------------------------------------
-2011-01-08 20:18:23.040 GMT:
- Booting Derby version The Apache Software Foundation - Apache Derby - 10.4.2.0 - (689064): instance a816c00e-012d-6747-9c66-000004bf80a0
-on database directory /Users/axel/unicentaopos-database  
+2011-09-05 21:21:12.437 GMT:
+Booten von Derby Version The Apache Software Foundation - Apache Derby - 10.6.2.1 - (999685): Instanz a816c00e-0132-3b77-61c1-0000041ab008
+für Datenbankverzeichnis /Users/axel/openbravopos-database   mit Klassenladeprogrammn java.net.URLClassLoader@445e228
 
-Database Class Loader started - derby.database.classpath=''
+java.vendor=Apple Inc.
+java.runtime.version=1.6.0_26-b03-383-11A511
+Das Ladeprogramm für Datenbankklassen wurde gestartet - derby.database.classpath=''

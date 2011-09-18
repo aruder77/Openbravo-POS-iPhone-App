@@ -13,6 +13,6 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Openbravo POS"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Openbravo"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

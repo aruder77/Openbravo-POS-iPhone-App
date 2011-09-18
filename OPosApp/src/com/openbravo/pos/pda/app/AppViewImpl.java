@@ -25,15 +25,13 @@ import com.openbravo.pos.forms.BeanFactoryApp;
 import com.openbravo.pos.forms.BeanFactoryException;
 import com.openbravo.pos.forms.BeanFactoryObj;
 import com.openbravo.pos.forms.BeanFactoryScript;
-import com.openbravo.pos.forms.DataLogicSales;
 import com.openbravo.pos.forms.DataLogicSystem;
-import com.openbravo.pos.pda.datalogic.DataLogicFloors;
 import com.openbravo.pos.printer.DeviceTicket;
 import com.openbravo.pos.printer.TicketParser;
 import com.openbravo.pos.printer.TicketPrinterException;
-import com.openbravo.pos.sales.DataLogicReceipts;
 import com.openbravo.pos.scale.DeviceScale;
 import com.openbravo.pos.scanpal2.DeviceScanner;
+
 
 public class AppViewImpl implements AppView {
 
@@ -68,7 +66,7 @@ public class AppViewImpl implements AppView {
 	}
 	
 	/** Creates new form JRootApp */
-	protected AppViewImpl() {
+	public AppViewImpl() {
         AppConfig config = new AppConfig(new String[0]);
         config.load();
         
@@ -298,8 +296,8 @@ public class AppViewImpl implements AppView {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public static <T> T getBean(Class<T> beanClass) throws BeanFactoryException {
-		return (T)AppViewImpl.getInstance().getBean(beanClass.getName());
+	public <T> T getBean(Class<T> beanClass) throws BeanFactoryException {
+		return (T) getBean(beanClass.getName());
 	}
 
 	public Object getBean(String beanfactory) throws BeanFactoryException {
